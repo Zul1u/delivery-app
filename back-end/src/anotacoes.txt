@@ -1,0 +1,39 @@
+Rotas Backend
+
+/login
+/login/validate <== token
+/products
+/products/:id
+/sales
+/sales:id
+
+node package http-status-code
+
+
+BODY
+email
+password
+
+
+
+fetch
+http:/localhost:3001/login
+
+import token from 'util/token'
+
+
+CONTROLLER
+login = async (req, res) => {
+  const { body: { email, password }} = req;
+  const user = await userService.getUser(email, password);
+  const { id, role } = user;
+  const token = token.create({ id, role });
+  res.status(200).json(token);
+}
+
+SERVICE
+
+
+
+throw Error => Middleware
+
