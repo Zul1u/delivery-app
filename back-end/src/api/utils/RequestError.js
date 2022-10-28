@@ -6,8 +6,20 @@ class RequestError extends Error {
     this.statusCode = statusCode;
   }
 
-  static invalidLogin() {
-    return new RequestError('Invalid login.', StatusCodes.BAD_REQUEST);
+  static invalidEmail() {
+    return new RequestError('Invalid email.', StatusCodes.BAD_REQUEST);
+  }
+
+  static invalidPassword() {
+    return new RequestError('Invalid password.', StatusCodes.BAD_REQUEST);
+  }
+
+  static userAlreadyRegistered() {
+    return new RequestError('User already registered', StatusCodes.BAD_REQUEST);
+  }
+
+  static userNotFound() {
+    return new RequestError('User not found', StatusCodes.NOT_FOUND);
   }
 }
 
