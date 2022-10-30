@@ -1,9 +1,9 @@
-import md5 from 'md5';
-import token from '../utils/token';
-import User from '../../database/models/user';
-import RequestError from '../utils/RequestError';
+const md5 = require('md5');
+const token = require('../utils/token');
+const User = require('../../database/models/user');
+const RequestError = require('../utils/RequestError');
 
-export default {
+module.exports = {
   login: async ({ email, password }) => {
     const user = await User.findOne({ where: { email } });
     if (!user) throw RequestError.invalidEmail();
