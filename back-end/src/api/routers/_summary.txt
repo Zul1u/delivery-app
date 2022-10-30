@@ -1,5 +1,8 @@
 Rotas Backend
 
+Legenda:
+* - Necessidade de rota não identificada nos requisitos, mas criada mesmo assim.
+
 POST    /login
 -> email string().email()
 -> password string().min(6)
@@ -10,20 +13,20 @@ POST    /users
 -> email string().email()
 -> password string().min(6)
 
-GET     /users/:id
+GET*    /users/:id
 DELETE  /users/:id
 
 GET     /products
-GET     /products/:id ???
+GET*    /products/:id
 
-GET     /sales 
+GET*    /sales 
 GET     /sales/user/:id --- Pega as vendas que estão vinculadas ao id do usuário, seja Client ou Seller
 POST    /sales
 -> Normatizar datas, Moment.js / Date ???
--> valor inicial de 'status' => 'Pendente'
+-> Valor inicial de 'status' => 'Pendente'
 
 PATCH     /sales/status/:statusId --- Para atualizar o status do pedido
--> valores de 'status' aceitos => 'Pendente' id 0, 'Preparando' id 1, 'Em Trânsito' id 2, 'Entregue' id 3
+-> Valores de 'status' aceitos => 'Pendente' id 0, 'Preparando' id 1, 'Em Trânsito' id 2, 'Entregue' id 3
 
 GET     /sales/:id --- Para exibir os detalhes da venda
 
