@@ -1,5 +1,6 @@
 const { StatusCodes } = require('http-status-codes');
 const userService = require('../services/user.service');
+const { userRoles } = require('../utils/staticData');
 
 module.exports = {
   login: async (req, res) => {
@@ -31,5 +32,7 @@ module.exports = {
     res.status(StatusCodes.NO_CONTENT).json();
   },
 
-  getRoles: async (req, res) => userService.getRoles();
+  getRoles: async (_req, res) => {
+    res.status(StatusCodes.OK).json(userRoles);
+  },
 };
