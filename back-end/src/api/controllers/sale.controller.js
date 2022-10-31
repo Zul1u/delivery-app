@@ -31,11 +31,8 @@ module.exports = {
   },
 
   updateStatus: async (req, res) => {
-    const {
-      params: { saleId },
-      body: { status },
-    } = req;
-    const updated = await saleService.updateStatus({ id: saleId, status });
+    const { params: { id, status } } = req;
+    const updated = await saleService.updateStatus({ id, status });
     res.status(StatusCodes.OK).json(updated);
   },
 };
