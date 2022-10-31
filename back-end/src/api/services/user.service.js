@@ -6,33 +6,33 @@ const RequestError = require('../utils/RequestError');
 module.exports = {
   login: async ({ email, password }) => {
     const user = await User.findOne({ where: { email } });
-    if (!user) throw RequestError.invalidEmail();
 
     const encrypted = md5(password);
-    if (encrypted !== user.password) throw RequestError.invalidPassword();
 
-    return token.create({
-      id: user.id,
-      name: user.name,
-      email: user.role,
-      role: user.role,
-    });
+    if (!user || encrypted !== user.password) {
+      throw RequestError.userNotFound();
+    }
+    
+    const { id, name, role } = user;
+    return {
+      token: token.create({ id, role }),
+      user: { id, name, email, role },
+    };
   },
 
   create: async (newUser) => {
     const { email } = newUser;
     const user = await User.findOne({ where: { email } });
 
-    if (user) throw RequestError.userAlreadyRegistered();
+    if (user) throw RequestError.emailAlreadyRegistered();
 
     const createdUser = await User.create(newUser);
 
-    return token.create({
-      id: createdUser.id,
-      name: createdUser.name,
-      email: createdUser.role,
-      role: createdUser.role,
-    });
+    const { id, name, role } = createdUser;
+    return {
+      token: token.create({ id, role }),
+      user: { id, name, email, role },
+    };
   },
 
   findAll: async () => User.findAll({ attributes: { exclude: ['password'] } }),
