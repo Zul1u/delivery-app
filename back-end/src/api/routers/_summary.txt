@@ -13,6 +13,7 @@ POST    /users
 -> email string().email()
 -> password string().min(6)
 
+GET     /users/roles --- Pega as roles possíveis dos usuários
 GET*    /users/:id
 DELETE  /users/:id
 
@@ -25,8 +26,10 @@ POST    /sales
 -> Normatizar datas, Moment.js / Date ???
 -> Valor inicial de 'status' => 'Pendente'
 
-PATCH     /sales/status/:statusId --- Para atualizar o status do pedido
--> Valores de 'status' aceitos => 'Pendente' id 0, 'Preparando' id 1, 'Em Trânsito' id 2, 'Entregue' id 3
+PATCH   /sales/:id/:status --- Para atualizar o status do pedido
+-> Valores de 'status' aceitos => 'Pendente', 'Preparando', 'Em Trânsito', 'Entregue'
+
+GET     /sales/statuses --- Retorna os status possíveis para atualização da venda.  
 
 GET     /sales/:id --- Para exibir os detalhes da venda
 
