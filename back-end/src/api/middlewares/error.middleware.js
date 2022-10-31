@@ -7,7 +7,8 @@ const errorMiddleware = (error, _req, res, _next) => {
     return res.status(statusCode).json({ message });
   }
 
-  return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ message: 'Corram para as colinas!', stack, error });
+  return res.status(StatusCodes.INTERNAL_SERVER_ERROR)
+    .json({ message: 'Corram para as colinas!', stack, error });
 };
 
 module.exports = errorMiddleware;
