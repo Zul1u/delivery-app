@@ -1,4 +1,4 @@
-import StatusCodes from 'http-status-codes';
+const { StatusCodes } = require('http-status-codes');
 
 class RequestError extends Error {
   constructor(message, statusCode) {
