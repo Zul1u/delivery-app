@@ -1,6 +1,6 @@
 const md5 = require('md5');
 const token = require('../utils/token');
-const User = require('../../database/models/user');
+const { User } = require('../../database/models');
 const RequestError = require('../utils/RequestError');
 
 module.exports = {

@@ -1,4 +1,4 @@
-const Sale = require('../../database/models/sale');
+const { Sale } = require('../../database/models');
 const RequestError = require('../utils/RequestError');
 
 module.exports = {
