@@ -2,6 +2,7 @@ const md5 = require('md5');
 const token = require('../utils/token');
 const User = require('../../database/models/user');
 const RequestError = require('../utils/RequestError');
+const { userRoles } = require('../utils/staticData');
 
 module.exports = {
   login: async ({ email, password }) => {
@@ -49,4 +50,6 @@ module.exports = {
   },
 
   deleteOne: async (id) => User.destroy({ where: { id } }),
+
+  getRoles: async () => userRoles,
 };

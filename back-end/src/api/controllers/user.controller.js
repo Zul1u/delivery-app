@@ -30,4 +30,6 @@ module.exports = {
     await userService.deleteOne(id);
     res.status(StatusCodes.NO_CONTENT).json();
   },
+
+  getRoles: async (req, res) => userService.getRoles();
 };
