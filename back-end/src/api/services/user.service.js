@@ -13,29 +13,36 @@ module.exports = {
     if (!user || encrypted !== user.password) {
       throw RequestError.userNotFound();
     }
-    
-    const { id, name, role } = user;
+
+    delete user.dataValues.password;
+
+    const { id, role } = user;
     return {
       token: token.create({ id, role }),
-      user: { id, name, email, role },
+      user,
     };
   },
 
   create: async (newUser) => {
-    const { email, password, role: newRole } = newUser;
+    const { name, email, password, role: newRole } = newUser;
+
     const user = await User.findOne({ where: { email } });
 
     if (user) throw RequestError.emailAlreadyRegistered();
 
-    newUser.role = newRole || userRoles.customer;
-    newUser.password = md5(password);
+    const createdUser = await User.create({
+      name,
+      email,
+      password: md5(password),
+      role: newRole || userRoles.customer,
+    });
 
-    const createdUser = await User.create(newUser);
+    delete createdUser.dataValues.password;
 
-    const { id, name, role } = createdUser;
+    const { id, role } = createdUser;
     return {
       token: token.create({ id, role }),
-      user: { id, name, email, role },
+      user: createdUser,
     };
   },
 
