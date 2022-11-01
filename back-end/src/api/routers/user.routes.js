@@ -5,9 +5,9 @@ const validate = require('../middleware/validate.middleware');
 
 userRouter.get('/', userController.findAll);
 
-userRouter.get('/:id', userController.findOne);
-
 userRouter.get('/roles', userController.getRoles);
+
+userRouter.get('/:id', userController.findOne);
 
 userRouter.post('/', validate.newUser, userController.create);
 
