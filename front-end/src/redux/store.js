@@ -2,11 +2,13 @@ import { configureStore } from '@reduxjs/toolkit';
 import { counterSlice } from './slices/counterSlice';
 import { deliveryAPI } from './services/delivery.api';
 
-export default store = configureStore({
+const store = configureStore({
   reducer: {
-    counter: counterSlice,
+    counter: counterSlice.reducer,
     [deliveryAPI.reducerPath]: deliveryAPI.reducer,
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware()
     .concat(deliveryAPI.middleware),
 });
+
+export default store;
