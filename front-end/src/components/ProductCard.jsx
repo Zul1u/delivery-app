@@ -4,27 +4,45 @@ import PropTypes from 'prop-types';
 function ProductCard({ id, name, price, urlImage }) {
   return (
     <div>
-      <span data-test-id={ `customer_products__element-card-price-${id}` }>
+      {/* Product price */}
+      <span data-testid={ `customer_products__element-card-price-${id}` }>
         R$
         {price}
       </span>
 
-      <img src={ urlImage } alt="" />
+      {/* Product image */}
+      <img
+        data-testid={ `customer_products__img-card-bg-image-${id}` }
+        src={ urlImage }
+        alt=""
+      />
 
-      <span data-test-id={ `customer_products__element-card-title-${id}` }>
+      {/* Product name */}
+      <span data-testid={ `customer_products__element-card-title-${id}` }>
         { name }
       </span>
 
       <div>
+        {/* Decrease item quantity */}
         <input
+          data-testid={ `customer_products__button-card-rm-item-${id}` }
           type="button"
           name="decreaseQty"
           value="-"
         />
 
-        <input type="text" name="qty" id="qty" value="0" />
-
+        {/* Item quantity */ }
         <input
+          data-testid={ `customer_products__input-card-quantity-${id}` }
+          type="text"
+          name="qty"
+          id="qty"
+          value="0"
+        />
+
+        {/* Increase item quantity */}
+        <input
+          data-testid={ `customer_products__button-card-add-item-${id}` }
           type="button"
           name="increaseQty"
           value="+"
