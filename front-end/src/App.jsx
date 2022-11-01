@@ -2,6 +2,8 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './App.css';
 import rockGlass from './images/rockGlass.svg';
+import { counterAction } from './redux/slices/counterSlice';
+import { useGetUserByIdQuery, useGetUsersQuery } from './redux/services/delivery.api';
 import ProductCard from './components/ProductCard';
 import OrderCard from './components/OrderCard';
 
