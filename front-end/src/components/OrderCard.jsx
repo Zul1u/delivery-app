@@ -48,23 +48,13 @@ function OrderCard({
 }
 
 OrderCard.propTypes = {
-  id: PropTypes.number,
-  totalPrice: PropTypes.number,
-  saleDate: PropTypes.string,
-  status: PropTypes.string,
-  deliveryAdress: PropTypes.string,
-  deliveryNumber: PropTypes.string,
-  isVendor: PropTypes.bool,
-};
-
-OrderCard.defaultProps = {
-  id: PropTypes.number,
-  totalPrice: PropTypes.number,
-  saleDate: PropTypes.string,
-  status: PropTypes.string,
-  deliveryAdress: PropTypes.string,
-  deliveryNumber: PropTypes.string,
-  isVendor: PropTypes.bool,
+  id: PropTypes.number.isRequired,
+  totalPrice: PropTypes.number.isRequired,
+  saleDate: PropTypes.string.isRequired,
+  status: PropTypes.string.isRequired,
+  deliveryAdress: PropTypes.string.isRequired,
+  deliveryNumber: PropTypes.string.isRequired,
+  isVendor: PropTypes.bool.isRequired,
 };
 
 export default OrderCard;
