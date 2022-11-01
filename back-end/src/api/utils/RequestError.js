@@ -30,15 +30,28 @@ class RequestError extends Error {
     return new RequestError('Sale not found.', StatusCodes.NOT_FOUND);
   }
 
+  static tokenNotFound() {
+    return new RequestError('Token not found.', StatusCodes.UNAUTHORIZED);
+  }
+
   static invalidToken() {
     return new RequestError('Invalid token.', StatusCodes.UNAUTHORIZED);
   }
 
+  static unauthorized() {
+    return new RequestError('Unauthorized.', StatusCodes.UNAUTHORIZED);
+  }
+
+  static invalidUser() {
+    return new RequestError('Invalid user.', StatusCodes.BAD_REQUEST);
+  }
+
+  static invalidSale() {
+    return new RequestError('Invalid sale.', StatusCodes.BAD_REQUEST);
+  }
+
   static invalidSaleStatus() {
-    return new RequestError(
-      'Sale status must be one of the following: 1 - Pendente, 2 - Preparando, 3 - Em Trânsito',
-      StatusCodes.BAD_REQUEST,
-    );
+    return new RequestError('Invalid sale status.', StatusCodes.BAD_REQUEST);
   }
 }
 
