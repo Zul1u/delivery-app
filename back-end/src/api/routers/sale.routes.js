@@ -5,11 +5,11 @@ const validate = require('../middleware/validate.middleware');
 
 saleRouter.get('/', saleController.findAll);
 
-saleRouter.get('/:id', saleController.findOne);
-
 saleRouter.get('/statuses', saleController.getStatuses);
 
 saleRouter.get('/user', auth.any, saleController.findByUserId);
+
+saleRouter.get('/:id', saleController.findOne);
 
 saleRouter.post('/', auth.any, validate.newSale, saleController.create);
 
