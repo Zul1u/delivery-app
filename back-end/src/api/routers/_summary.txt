@@ -9,9 +9,11 @@ POST    /login
 
 GET     /users
 POST    /users
--> name string().min(12)
--> email string().email()
--> password string().min(6)
+-> body: {
+  name: string,
+  email: string,
+  password: string,
+}
 
 GET     /users/roles --- Pega as roles possíveis dos usuários
 GET*    /users/:id
@@ -21,8 +23,16 @@ GET     /products
 GET*    /products/:id
 
 GET*    /sales 
-GET     /sales/user/:id --- Pega as vendas que estão vinculadas ao id do usuário, seja Client ou Seller
+GET     /sales/user --- Pega as vendas que estão vinculadas ao id do usuário, seja Customer ou Seller.
+-> Enviar authorization: token no headers, que o backend faz a identificação e extrai o id
 POST    /sales
+-> body: {
+  userId: number,
+  userRole: string
+  totalPrice: number,
+  deliveryAddress: string,
+  deliveryNumber: string,
+}
 -> Normatizar datas, Moment.js / Date ???
 -> Valor inicial de 'status' => 'Pendente'
 
