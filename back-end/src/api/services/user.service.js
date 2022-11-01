@@ -2,6 +2,7 @@ const md5 = require('md5');
 const token = require('../utils/token');
 const { User } = require('../../database/models');
 const RequestError = require('../utils/RequestError');
+const { userRoles } = require('../utils/staticData');
 
 module.exports = {
   login: async ({ email, password }) => {
@@ -21,10 +22,13 @@ module.exports = {
   },
 
   create: async (newUser) => {
-    const { email } = newUser;
+    const { email, password, role: newRole } = newUser;
     const user = await User.findOne({ where: { email } });
 
     if (user) throw RequestError.emailAlreadyRegistered();
+
+    newUser.role = newRole || userRoles.customer;
+    newUser.password = md5(password);
 
     const createdUser = await User.create(newUser);
 
