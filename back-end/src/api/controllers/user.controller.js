@@ -5,14 +5,14 @@ const { userRoles } = require('../utils/staticData');
 module.exports = {
   login: async (req, res) => {
     const { body: login } = req;
-    const token = await userService.login(login);
-    return res.status(StatusCodes.OK).json({ token });
+    const result = await userService.login(login);
+    return res.status(StatusCodes.OK).json(result);
   },
 
   create: async (req, res) => {
     const { body: newUser } = req;
-    const token = await userService.create(newUser);
-    res.status(StatusCodes.CREATED).json({ token });
+    const created = await userService.create(newUser);
+    res.status(StatusCodes.CREATED).json(created);
   },
 
   findAll: async (_req, res) => {
