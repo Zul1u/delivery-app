@@ -4,7 +4,7 @@ import { deliveryAPI } from './services/delivery.api';
 
 const store = configureStore({
   reducer: {
-    counter: counterSlice,
+    counter: counterSlice.reducer,
     [deliveryAPI.reducerPath]: deliveryAPI.reducer,
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware()
