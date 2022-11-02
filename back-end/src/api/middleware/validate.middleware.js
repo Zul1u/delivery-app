@@ -2,7 +2,7 @@ const RequestError = require('../utils/RequestError');
 const { saleStatuses } = require('../utils/staticData');
 const { saleSchema, userSchema } = require('./validations');
 
-const isValid = (object, schema) => {
+const isValid = async (object, schema) => {
   const parsed = schema.safeParse(object);
   return parsed.success;
 };
