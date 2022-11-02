@@ -6,7 +6,7 @@ const baseQuery = fetchBaseQuery({
     const token = '';
 
     // If we have a token set in state, let's assume that we should be passing it.
-    if (token.length > 1) {
+    if (token) {
       headers.set('authorization', token);
     }
 
@@ -20,7 +20,7 @@ export const deliveryAPI = createApi({
   endpoints: (builder) => ({
     login: builder.mutation({
       query: (payload) => ({
-        url: 'login/',
+        url: 'login',
         method: 'POST',
         body: payload,
       }),
