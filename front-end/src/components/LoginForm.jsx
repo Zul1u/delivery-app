@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { setUserInfosStorage } from '../helpers/localStorage/userInfos';
 import emailAndPasswordValidation from '../helpers/validateInputs';
 import { useLoginMutation } from '../redux/services/delivery.api';
+import StorageManager from '../utils/StorageManager';
 
 export default function LoginForm() {
   const [formState, setFormState] = useState({ email: '', password: '' });
@@ -34,10 +34,7 @@ export default function LoginForm() {
   const handleSubmit = async () => {
     const result = await login(formState);
     if (result.data) {
-      const { user: { name, email, role } } = result.data;
-
-      const userInfos = { name, email, role, token: result.data.token };
-      setUserInfosStorage(userInfos);
+      StorageManager.saveUser(result.data);
 
       return selectRoute(result.data);
     }
