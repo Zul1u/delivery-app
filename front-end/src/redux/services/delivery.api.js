@@ -6,7 +6,7 @@ const baseQuery = fetchBaseQuery({
     const token = '';
 
     // If we have a token set in state, let's assume that we should be passing it.
-    if (token) {
+    if (token.length > 1) {
       headers.set('authorization', token);
     }
 
