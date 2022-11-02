@@ -7,6 +7,7 @@ const userSchema = z.object({
   name: z.string().min(12),
   email: z.string().email(),
   password: z.string().min(6),
+  role: z.enum([admin, customer, seller]).optional(),
 });
 
 const saleSchema = z.object({

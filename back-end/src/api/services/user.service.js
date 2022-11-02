@@ -2,6 +2,7 @@ const md5 = require('md5');
 const token = require('../utils/token');
 const { User } = require('../../database/models');
 const RequestError = require('../utils/RequestError');
+const { userRoles } = require('../utils/staticData');
 
 module.exports = {
   login: async ({ email, password }) => {
@@ -12,26 +13,36 @@ module.exports = {
     if (!user || encrypted !== user.password) {
       throw RequestError.userNotFound();
     }
-    
-    const { id, name, role } = user;
+
+    delete user.dataValues.password;
+
+    const { id, role } = user;
     return {
       token: token.create({ id, role }),
-      user: { id, name, email, role },
+      user,
     };
   },
 
   create: async (newUser) => {
-    const { email } = newUser;
+    const { name, email, password, role: newRole } = newUser;
+
     const user = await User.findOne({ where: { email } });
 
     if (user) throw RequestError.emailAlreadyRegistered();
 
-    const createdUser = await User.create(newUser);
+    const createdUser = await User.create({
+      name,
+      email,
+      password: md5(password),
+      role: newRole || userRoles.customer,
+    });
 
-    const { id, name, role } = createdUser;
+    delete createdUser.dataValues.password;
+
+    const { id, role } = createdUser;
     return {
       token: token.create({ id, role }),
-      user: { id, name, email, role },
+      user: createdUser,
     };
   },
 
