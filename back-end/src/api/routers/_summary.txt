@@ -10,10 +10,9 @@ POST    /login
 GET     /users
 POST    /users
 -> body: {
-  name: string.min(12),
-  email: string.email(),
-  password: string.min(6),
-  role: string opcional, precisa ser um dos valores em userRoles
+  name: string,
+  email: string,
+  password: string,
 }
 
 GET     /users/roles --- Pega as roles possíveis dos usuários
@@ -29,7 +28,7 @@ GET     /sales/user --- Pega as vendas que estão vinculadas ao id do usuário, 
 POST    /sales
 -> body: {
   userId: number,
-  userRole: string, precisa ser um dos valores em userRoles
+  userRole: string
   totalPrice: number,
   deliveryAddress: string,
   deliveryNumber: string,

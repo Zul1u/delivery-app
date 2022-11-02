@@ -1,5 +1,5 @@
 const userRoles = {
-  admin: 'administrator',
+  admin: 'admin',
   customer: 'customer',
   seller: 'seller',
 };
