@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import emailAndPasswordValidation from '../helpers/validateInputs';
-import { useLoginMutation } from '../redux/services/delivery.api';
+import { loginUser, setToken } from '../services/routes';
 import StorageManager from '../utils/StorageManager';
 
 export default function LoginForm() {
   const [formState, setFormState] = useState({ email: '', password: '' });
   const [submitDisabled, setSubmitDisabled] = useState(true);
   const [loginError, setLoginError] = useState(false);
-  const [login] = useLoginMutation();
 
   const navigate = useNavigate();
 
@@ -32,11 +31,12 @@ export default function LoginForm() {
   };
 
   const handleSubmit = async () => {
-    const result = await login(formState);
-    if (result.data) {
-      StorageManager.saveUser(result.data);
+    const resultLogin = await loginUser(formState);
+    if (resultLogin) {
+      StorageManager.saveUser(resultLogin.data);
+      setToken(resultLogin.data.token);
 
-      return selectRoute(result.data);
+      return selectRoute(resultLogin.data);
     }
     setLoginError(true);
   };
