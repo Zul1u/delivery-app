@@ -9,7 +9,7 @@ class StorageManager {
     const { token, user: { name, email, role } } = data;
     const storedUser = { token, name, email, role };
     localStorage.setItem(USER_KEY, JSON.stringify(storedUser));
-  };
+  }
 
   /**
    * Loads the current user. Has the format required in the evaluator.
