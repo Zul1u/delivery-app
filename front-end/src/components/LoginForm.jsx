@@ -19,7 +19,7 @@ export default function LoginForm() {
     setFormState((state) => ({ ...state, [name]: value }));
   };
 
-  const selectRoute = ({ token: { user } }) => {
+  const selectRoute = ({ user }) => {
     switch (user.role) {
     case 'seller':
       return navigate(`/${user.role}/checkout`);
