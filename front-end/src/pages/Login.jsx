@@ -1,5 +1,6 @@
-// Pode redirecionar para
-// /customer/products
-// /seller/orders
-// /admin/manage
-// Dependendo da role de quem fez login
+import React from 'react';
+import LoginForm from '../components/LoginForm';
+
+export default function LoginPage() {
+  return <LoginForm />;
+}

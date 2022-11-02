@@ -1,36 +1,14 @@
 import React from 'react';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import './App.css';
-import rockGlass from './images/rockGlass.svg';
-import { useDeleteUserMutation } from './redux/services/delivery.api';
+import LoginPage from './pages/Login';
 
 function App() {
-  const [createUser] = useDeleteUserMutation();
-
-  const SETE = 7;
-
-  const sendUser = async () => {
-    await createUser(SETE);
-    // .unwrap()
-    // .then((payload) => console.log(payload))
-    // .then((error) => {
-    //   console.log(error)
-    // })
-  };
-
   return (
-    <div className="App">
-      <span className="logo">TRYBE</span>
-      <object className="rocksGlass" type="image/svg+xml" data={ rockGlass }>
-        Glass
-      </object>
-      { getUsers() }
-      <button
-        type="button"
-        onClick={ sendUser }
-      >
-        cria
-      </button>
-    </div>
+    <Routes>
+      <Route path="/" element={ <Navigate to="/login" /> } />
+      <Route path="/login" element={ <LoginPage /> } />
+    </Routes>
   );
 }
 
