@@ -8,12 +8,10 @@ const setToken = (token) => {
   api.defaults.headers.common.Authorization = token;
 };
 
-const loginUser = async (infosLogin) => {
-  const result = await api.post('login', infosLogin).catch((error) => {
+const loginUser = async ({ email, password }) => api.post('login', { email, password })
+  .catch((error) => {
     console.error(error);
     return null;
   });
-  return result;
-};
 
 export { setToken, loginUser };

@@ -30,13 +30,15 @@ export default function LoginForm() {
     }
   };
 
-  const handleSubmit = async () => {
-    const resultLogin = await loginUser(formState);
-    if (resultLogin) {
-      StorageManager.saveUser(resultLogin.data);
-      setToken(resultLogin.data.token);
+  const handleSubmit = async (event) => {
+    event.preventDefault();
 
-      return selectRoute(resultLogin.data);
+    const response = await loginUser(formState);
+    if (response) {
+      StorageManager.saveUser(response.data);
+      setToken(response.data.token);
+
+      return selectRoute(response.data);
     }
     setLoginError(true);
   };
