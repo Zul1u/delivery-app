@@ -1,14 +1,15 @@
 const SaleProduct = (sequelize, DataTypes) => {
   
   const SaleProduct = sequelize.define('SaleProduct', {
-    id: {
+    sale_id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
-      autoIncrement: true,
     },
-    name: DataTypes.STRING,
-    price: DataTypes.DECIMAL,
-    urlImage: DataTypes.STRING,
+    product_id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+    },
+    quantity: DataTypes.INTEGER,
   }, {
     timestamps: false,
     underscored: true,
