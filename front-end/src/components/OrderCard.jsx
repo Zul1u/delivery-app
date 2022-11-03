@@ -8,7 +8,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 function OrderCard({
-  id, totalPrice, saleDate, status, deliveryAdress, deliveryNumber, isVendor,
+  id, totalPrice, saleDate, status, deliveryAdress, deliveryNumber, isSeller,
 }) {
   return (
     <div>
@@ -36,7 +36,7 @@ function OrderCard({
 
       {/* Order adress */}
       {
-        isVendor && (
+        isSeller && (
           <span data-testid={ `seller_orders__element-card-address-${id}` }>
             {deliveryAdress}
             {deliveryNumber}
@@ -54,7 +54,7 @@ OrderCard.propTypes = {
   status: PropTypes.string.isRequired,
   deliveryAdress: PropTypes.string.isRequired,
   deliveryNumber: PropTypes.string.isRequired,
-  isVendor: PropTypes.bool.isRequired,
+  isSeller: PropTypes.bool.isRequired,
 };
 
 export default OrderCard;

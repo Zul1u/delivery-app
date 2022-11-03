@@ -10,9 +10,10 @@
 
 import { useNavigate } from 'react-router-dom';
 import HeaderRedirectBtn from './HeaderRedirectBtn';
+import StorageManager from '../utils/StorageManager';
 
 function Header() {
-  const userName = localStorage.getItem('name');
+  const { name, role } = StorageManager.loadUser();
   const navigate = useNavigate();
 
   const customerHeaderButtons = (
@@ -51,19 +52,17 @@ function Header() {
   );
 
   const logout = () => {
-    localStorage.clear();
+    StorageManager.deleteUser();
     navigate('/');
   };
 
   const renderHeaderButtons = () => {
-    const userRole = localStorage.getItem('role');
-
     switch (true) {
-    case userRole === 'customer':
+    case role === 'customer':
       return customerHeaderButtons;
-    case userRole === 'seller':
+    case role === 'seller':
       return sellerHeaderButtons;
-    case userRole === 'admin':
+    case role === 'administrator':
       return adminHeaderButtons;
     default:
       logout();
@@ -76,7 +75,7 @@ function Header() {
       <span
         data-testid="customer_products__element-navbar-user-full-name"
       >
-        { userName || 'User' }
+        { name || 'User' }
       </span>
       <button
         type="button"

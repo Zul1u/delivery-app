@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { counterSlice } from './slices/counterSlice';
-import { deliveryAPI } from './services/delivery.api';
+import { deliveryAPI } from './services/api.query';
 
 const store = configureStore({
   reducer: {
