@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { registerValidation } from '../helpers/validateInputs';
-import { useCreateUserMutation } from '../redux/services/delivery.api';
+import DELIVERY_API from '../redux/services/api.fetch';
 import StorageManager from '../utils/StorageManager';
 
 export default function RegisterForm() {
   const [formState, setFormState] = useState({ name: '', email: '', password: '' });
   const [submitDisabled, setSubmitDisabled] = useState(true);
   const [registerError, setRegisterError] = useState(false);
-  const [registerUser] = useCreateUserMutation();
+  const [registerUser] = DELIVERY_API.createUser();
 
   const navigate = useNavigate();
 
