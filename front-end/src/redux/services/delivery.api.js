@@ -20,7 +20,7 @@ export const deliveryAPI = createApi({
   endpoints: (builder) => ({
     login: builder.mutation({
       query: (payload) => ({
-        url: 'login/',
+        url: 'login',
         method: 'POST',
         body: payload,
       }),
