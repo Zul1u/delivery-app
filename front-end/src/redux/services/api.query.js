@@ -19,11 +19,7 @@ export const deliveryAPI = createApi({
   baseQuery,
   endpoints: (builder) => ({
     login: builder.mutation({
-      query: (payload) => ({
-        url: 'login',
-        method: 'POST',
-        body: payload,
-      }),
+      query: (payload) => ({ url: 'login', method: 'POST', body: payload }),
     }),
     getUsers: builder.query({
       query: () => 'users/',
@@ -35,17 +31,10 @@ export const deliveryAPI = createApi({
       query: () => 'users/roles',
     }),
     createUser: builder.mutation({
-      query: (payload) => ({
-        url: 'users/',
-        method: 'POST',
-        body: payload,
-      }),
+      query: (payload) => ({ url: 'users/', method: 'POST', body: payload }),
     }),
     deleteUser: builder.mutation({
-      query: (id) => ({
-        url: `users/${id}`,
-        method: 'DELETE',
-      }),
+      query: (id) => ({ url: `users/${id}`, method: 'DELETE' }),
     }),
     getSales: builder.query({
       query: () => 'sales/',
@@ -60,17 +49,10 @@ export const deliveryAPI = createApi({
       query: () => 'sales/statuses',
     }),
     createSale: builder.mutation({
-      query: (payload) => ({
-        url: 'sales/',
-        method: 'POST',
-        body: payload,
-      }),
+      query: (payload) => ({ url: 'sales/', method: 'POST', body: payload }),
     }),
     updateSaleStatus: builder.mutation({
-      query: (id, status) => ({
-        url: `sales/${id}/${status}`,
-        method: 'PATCH',
-      }),
+      query: (id, status) => ({ url: `sales/${id}/${status}`, method: 'PATCH' }),
     }),
     getProducts: builder.query({
       query: () => 'products/',
