@@ -19,7 +19,7 @@ module.exports = {
   findByUserId: async (id) => {
     const allSales = await Sale.findAll();
     return allSales
-      .filter((sale) => sale.clientId === +id || sale.sellerId === +id);;
+      .filter((sale) => sale.clientId === +id || sale.sellerId === +id);
   },
 
   updateStatus: async ({ id, status }) => {
