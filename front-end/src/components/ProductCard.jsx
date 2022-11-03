@@ -1,7 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function ProductCard({ id, name, price, urlImage }) {
+function ProductCard({
+  id, name, price, urlImage, increaseQtyFunc, decreaseQtyFunc, qtyInput,
+}) {
   return (
     <div>
       {/* Product price */}
@@ -28,7 +30,7 @@ function ProductCard({ id, name, price, urlImage }) {
           data-testid={ `customer_products__button-card-rm-item-${id}` }
           type="button"
           name="decreaseQty"
-          value="-"
+          value={ decreaseQtyFunc }
         />
 
         {/* Item quantity */ }
@@ -37,7 +39,7 @@ function ProductCard({ id, name, price, urlImage }) {
           type="text"
           name="qty"
           id="qty"
-          value="0"
+          value={ qtyInput }
         />
 
         {/* Increase item quantity */}
@@ -45,7 +47,7 @@ function ProductCard({ id, name, price, urlImage }) {
           data-testid={ `customer_products__button-card-add-item-${id}` }
           type="button"
           name="increaseQty"
-          value="+"
+          value={ increaseQtyFunc }
         />
       </div>
 
@@ -58,6 +60,9 @@ ProductCard.propTypes = {
   name: PropTypes.string.isRequired,
   price: PropTypes.string.isRequired,
   urlImage: PropTypes.string.isRequired,
+  increaseQtyFunc: PropTypes.func.isRequired,
+  decreaseQtyFunc: PropTypes.func.isRequired,
+  qtyInput: PropTypes.number.isRequired,
 };
 
 export default ProductCard;
