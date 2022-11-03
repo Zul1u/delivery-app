@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import emailAndPasswordValidation from '../helpers/validateInputs';
+import { loginValidation } from '../helpers/validateInputs';
 import { useLoginMutation } from '../redux/services/delivery.api';
 import StorageManager from '../utils/StorageManager';
 
@@ -13,7 +13,7 @@ export default function LoginForm() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    setSubmitDisabled(!emailAndPasswordValidation(formState));
+    setSubmitDisabled(!loginValidation(formState));
   }, [formState]);
 
   const handleChange = ({ target: { name, value } }) => {
@@ -33,7 +33,7 @@ export default function LoginForm() {
 
   const handleSubmit = async () => {
     const response = await loginUser(formState);
-    console.log(response);
+
     if (response.data) {
       StorageManager.saveUser(response.data);
 
@@ -54,6 +54,7 @@ export default function LoginForm() {
             name="email"
             onChange={ handleChange }
             value={ formState.email }
+            placeholder="seu-email@email.com"
           />
         </label>
       </div>
@@ -67,6 +68,7 @@ export default function LoginForm() {
             name="password"
             onChange={ handleChange }
             value={ formState.password }
+            placeholder="******"
           />
         </label>
       </div>
