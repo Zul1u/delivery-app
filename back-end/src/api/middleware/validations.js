@@ -10,12 +10,15 @@ const userSchema = z.object({
   role: z.enum([admin, customer, seller]).optional(),
 });
 
+// o backend faz o timestamp da data da compra
+// a compra sempre inicia um status "Pendente", então não tem necessidade de passar essa info
+// o backend faz o calculo do preço total dos produtos, como uma camada extra de segurança
 const saleSchema = z.object({
-  userId: z.number().int(),
-  userRole: z.enum([admin, customer, seller]),
-  totalPrice: z.number().min(0),
+  customerId: z.number().int(),
+  sellerId: z.number().int(),
   deliveryAddress: z.string(),
   deliveryNumber: z.string(),
+  products: z.object(),
 });
 
 module.exports = {
