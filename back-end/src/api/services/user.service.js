@@ -19,7 +19,7 @@ module.exports = {
     const { id, role } = user;
     return {
       token: token.create({ id, role }),
-      user,
+      ...user,
     };
   },
 

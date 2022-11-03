@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import emailAndPasswordValidation from '../helpers/validateInputs';
-import { loginUser, setToken } from '../services/routes';
+import { loginUser } from '../services/routes';
 import StorageManager from '../utils/StorageManager';
 
 export default function LoginForm() {
@@ -34,9 +34,9 @@ export default function LoginForm() {
     event.preventDefault();
 
     const response = await loginUser(formState);
+    console.log(response);
     if (response) {
       StorageManager.saveUser(response.data);
-      setToken(response.data.token);
 
       return selectRoute(response.data);
     }
