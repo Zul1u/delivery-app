@@ -64,7 +64,7 @@ export const deliveryAPI = createApi({
 });
 
 export const {
-  useLoginMutation, useGetUsersQuery, useGetUserByIdQuery, useGetRolesQuery, 
+  useLoginMutation, useGetUsersQuery, useGetUserByIdQuery, useGetRolesQuery,
   useCreateUserMutation, useDeleteUserMutation, useGetSalesQuery, useGetSaleStatusesQuery,
   useGetSaleByUserIdQuery, useGetSaleByIdQuery, useCreateSaleMutation,
   useUpdateSaleStatusMutation, useGetProductsQuery, useGetProductByIdQuery,
