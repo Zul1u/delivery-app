@@ -21,8 +21,8 @@ module.exports = {
   },
 
   findByUserId: async (req, res) => {
-    const { headers: userId } = req;
-    const sales = await saleService.findByUserId(userId);
+    const { id } = req.params;
+    const sales = await saleService.findByUserId(id);
     res.status(StatusCodes.OK).json(sales);
   },
 
