@@ -6,7 +6,7 @@ const Sale = (sequelize, DataTypes) => {
       primaryKey: true,
       autoIncrement: true,
     },
-    clientId: DataTypes.STRING,
+    userId: DataTypes.STRING,
     sellerId: DataTypes.STRING,
     totalPrice: DataTypes.DECIMAL,
     deliveryAddress: DataTypes.STRING,
@@ -20,8 +20,8 @@ const Sale = (sequelize, DataTypes) => {
 
   Sale.associate = (models) => {
     Sale.belongsTo(models.User, {
-      as: 'client',
-      foreignKey: 'clientId',
+      as: 'customer',
+      foreignKey: 'userId',
     });
     Sale.belongsTo(models.User, {
       as: 'seller',

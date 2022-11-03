@@ -15,11 +15,11 @@ const userSchema = z.object({
 // a compra sempre inicia um status "Pendente", então não tem necessidade de passar essa info
 // o backend faz o calculo do preço total dos produtos, como uma camada extra de segurança
 const saleSchema = z.object({
-  customerId: z.number().int(),
+  userId: z.number().int(),
   sellerId: z.number().int(),
   deliveryAddress: z.string(),
   deliveryNumber: z.string(),
-  products: z.object(),
+  products: z.object({}),
 });
 
 module.exports = {
