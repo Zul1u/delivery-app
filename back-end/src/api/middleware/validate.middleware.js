@@ -9,15 +9,16 @@ const isValid = (object, schema) => {
 
 const newSale = async (req, _res, next) => {
   const { body } = req;
-  
   if (!isValid(body, saleSchema)) return next(RequestError.invalidSale());
+
+  const { products } = body;
+  if (Object.keys(products).length === 0) return next(RequestError.emptySale());
 
   return next();
 };
 
 const newUser = async (req, _res, next) => {
   const { body } = req;
-  
   if (!isValid(body, userSchema)) return next(RequestError.invalidUser());
 
   return next();
