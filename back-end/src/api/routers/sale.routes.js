@@ -7,7 +7,7 @@ saleRouter.get('/', saleController.findAll);
 
 saleRouter.get('/statuses', saleController.getStatuses);
 
-saleRouter.get('/user', auth.any, saleController.findByUserId);
+saleRouter.get('/user/:id', auth.any, saleController.findByUserId);
 
 saleRouter.get('/:id', saleController.findOne);
 

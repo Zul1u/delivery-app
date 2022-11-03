@@ -16,10 +16,10 @@ module.exports = {
     return sale;
   },
 
-  findByUserId: async (userId) => {
+  findByUserId: async (id) => {
     const allSales = await Sale.findAll();
     return allSales
-      .filter((sale) => sale.clientId === userId || sale.sellerId === userId);
+      .filter((sale) => sale.clientId === +id || sale.sellerId === +id);;
   },
 
   updateStatus: async ({ id, status }) => {
