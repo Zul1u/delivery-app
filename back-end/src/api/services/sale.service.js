@@ -4,11 +4,26 @@ const RequestError = require('../utils/RequestError');
 module.exports = {
   create: async (newSale) => Sale.create(newSale),
 
-  findAll: async () => Sale.findAll(),
+  findAll: async () => Sale.findAll({
+    include: [
+      {
+        model: SaleProduct,
+        as: 'products',
+        attributes: { exclude: ['saleId', 'SaleId'] },
+      },
+    ],
+  }),
 
   findOne: async (id) => {
     const sale = await Sale.findOne({
       where: { id },
+      include: [
+        {
+          model: SaleProduct,
+          as: 'products',
+          attributes: { exclude: ['saleId', 'SaleId'] },
+        },
+      ],
     });
 
     if (!sale) throw RequestError.saleNotFound();
