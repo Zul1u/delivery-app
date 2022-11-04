@@ -1,3 +1,5 @@
+const { saleStatuses } = require("../../api/utils/staticData");
+
 const Sale = (sequelize, DataTypes) => {
   
   const Sale = sequelize.define('Sale', {
@@ -6,13 +8,19 @@ const Sale = (sequelize, DataTypes) => {
       primaryKey: true,
       autoIncrement: true,
     },
-    clientId: DataTypes.STRING,
+    userId: DataTypes.STRING,
     sellerId: DataTypes.STRING,
     totalPrice: DataTypes.DECIMAL,
     deliveryAddress: DataTypes.STRING,
     deliveryNumber: DataTypes.STRING,
-    saleDate: DataTypes.DATE,
-    status: DataTypes.STRING,
+    saleDate: {
+      type: DataTypes.DATE,
+      defaultValue: DataTypes.NOW,
+    },
+    status: {
+      type: DataTypes.STRING,
+      defaultValue: saleStatuses.pendente,
+    },
   }, {
     timestamps: false,
     underscored: true,
@@ -20,13 +28,16 @@ const Sale = (sequelize, DataTypes) => {
 
   Sale.associate = (models) => {
     Sale.belongsTo(models.User, {
-      as: 'client',
-      foreignKey: 'clientId',
+      as: 'customer',
+      foreignKey: 'userId',
     });
     Sale.belongsTo(models.User, {
       as: 'seller',
       foreignKey: 'sellerId',
     });
+    Sale.hasMany(models.SaleProduct, {
+      as: 'products',
+    })
   };
 
   return Sale;

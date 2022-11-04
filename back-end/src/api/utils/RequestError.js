@@ -23,11 +23,15 @@ class RequestError extends Error {
   }
   
   static productNotFound() {
-    return new RequestError('Product not found.', StatusCodes.NOT_FOUND);
+    return new RequestError('One or more products not found.', StatusCodes.NOT_FOUND);
   }
 
   static saleNotFound() {
     return new RequestError('Sale not found.', StatusCodes.NOT_FOUND);
+  }
+
+  static emptySale() {
+    return new RequestError('Sale has no products.', StatusCodes.BAD_REQUEST);
   }
 
   static tokenNotFound() {
