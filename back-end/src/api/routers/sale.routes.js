@@ -9,7 +9,7 @@ saleRouter.get('/statuses', saleController.getStatuses);
 
 saleRouter.get('/user/:id', auth.any, saleController.findByUserId);
 
-saleRouter.get('/user', auth.any, saleController.findByUserId);
+saleRouter.get('/user', auth.any, saleController.findByToken);
 
 saleRouter.get('/:id', saleController.findOne);
 
