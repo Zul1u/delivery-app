@@ -8,28 +8,29 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 function OrderCard({
-  id, totalPrice, saleDate, status, deliveryAdress, deliveryNumber, isSeller,
+  id, totalPrice, saleDate, status,
+  deliveryAdress, deliveryNumber, isSeller, role,
 }) {
   return (
     <div>
       {/* Order Id */}
-      <span data-testid={ `seller_orders__element-order-id-${id}` }>
+      <span data-testid={ `${role}_orders__element-order-id-${id}` }>
         Pedido
         {id}
       </span>
 
       {/* Order status */}
-      <span data-testid={ `seller_orders__element-delivery-status-${id}` }>
+      <span data-testid={ `${role}_orders__element-delivery-status-${id}` }>
         {status}
       </span>
 
       {/* Order sale date */}
-      <span data-test id={ `seller_orders__element-order-date-${id}` }>
+      <span data-test id={ `${role}_orders__element-order-date-${id}` }>
         {saleDate}
       </span>
 
       {/* Order total price */}
-      <span data-testid={ `seller_orders__element-card-price-${totalPrice}` }>
+      <span data-testid={ `${role}_orders__element-card-price-${totalPrice}` }>
         R$
         {totalPrice}
       </span>
@@ -37,7 +38,7 @@ function OrderCard({
       {/* Order adress */}
       {
         isSeller && (
-          <span data-testid={ `seller_orders__element-card-address-${id}` }>
+          <span data-testid={ `${role}_orders__element-card-address-${id}` }>
             {deliveryAdress}
             {deliveryNumber}
           </span>
@@ -55,6 +56,7 @@ OrderCard.propTypes = {
   deliveryAdress: PropTypes.string.isRequired,
   deliveryNumber: PropTypes.string.isRequired,
   isSeller: PropTypes.bool.isRequired,
+  role: PropTypes.string.isRequired,
 };
 
 export default OrderCard;
