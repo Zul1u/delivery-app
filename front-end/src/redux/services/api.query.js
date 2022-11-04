@@ -42,6 +42,9 @@ export const deliveryAPI = createApi({
     getSaleByUserId: builder.query({
       query: (id) => `sales/user/${id}`,
     }),
+    getSaleByToken: builder.query({
+      query: () => 'sales/user',
+    }),
     getSaleById: builder.query({
       query: (id) => `sales/${id}`,
     }),
@@ -68,6 +71,7 @@ export const {
   useCreateUserMutation, useDeleteUserMutation, useGetSalesQuery, useGetSaleStatusesQuery,
   useGetSaleByUserIdQuery, useGetSaleByIdQuery, useCreateSaleMutation,
   useUpdateSaleStatusMutation, useGetProductsQuery, useGetProductByIdQuery,
+  useGetSaleByTokenQuery,
 } = deliveryAPI;
 
 export default deliveryAPI.reducer;
