@@ -1,8 +1,29 @@
-const { Sale } = require('../../database/models');
+const { Sale, Product, SaleProduct } = require('../../database/models');
 const RequestError = require('../utils/RequestError');
 
 module.exports = {
-  create: async (newSale) => Sale.create(newSale),
+  create: async (newSale) => {
+    const { userId, sellerId, deliveryAddress, deliveryNumber, products: bought } = newSale;
+    const productsIds = Object.keys(bought);
+    const products = await Product.findAll({ where: { id: productsIds }, raw: true });
+
+    if (products.length !== productsIds.length) throw RequestError.productNotFound();
+
+    const totalPrice = products
+      .map((product) => product.price * bought[product.id])
+      .reduce((acc, mult) => acc + mult, 0);
+
+    const created = await Sale.create({
+      userId, sellerId, deliveryAddress, deliveryNumber, totalPrice,
+    });
+
+    const salesProducts = products
+      .map((prod) => ({ saleId: created.id, productId: prod.id, quantity: bought[prod.id] }));
+    
+    await SaleProduct.bulkCreate(salesProducts);
+
+    return created;
+  },
 
   findAll: async () => Sale.findAll({
     include: [
@@ -34,7 +55,7 @@ module.exports = {
   findByUserId: async (id) => {
     const allSales = await Sale.findAll();
     return allSales
-      .filter((sale) => sale.clientId === +id || sale.sellerId === +id);
+      .filter((sale) => sale.userId === +id || sale.sellerId === +id);
   },
 
   updateStatus: async ({ id, status }) => {
