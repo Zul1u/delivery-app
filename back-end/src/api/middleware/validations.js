@@ -1,7 +1,6 @@
 const { z } = require('zod');
 const { 
   userRoles: { admin, customer, seller },
-  saleStatuses: { pendente, preparando, emTransito, entregue },
 } = require('../utils/staticData');
 
 const userSchema = z.object({
