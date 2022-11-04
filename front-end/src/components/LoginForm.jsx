@@ -33,7 +33,7 @@ export default function LoginForm() {
 
   const handleSubmit = async () => {
     const response = await userLogin(formState);
-    console.log(response);
+
     if (response.data) {
       StorageManager.saveUser(response.data);
 
