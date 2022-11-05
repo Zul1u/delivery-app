@@ -57,12 +57,12 @@ function Header() {
   };
 
   const renderHeaderButtons = () => {
-    switch (true) {
-    case role === 'customer':
+    switch (role) {
+    case 'customer':
       return customerHeaderButtons;
-    case role === 'seller':
+    case 'seller':
       return sellerHeaderButtons;
-    case role === 'administrator':
+    case 'administrator':
       return adminHeaderButtons;
     default:
       logout();
