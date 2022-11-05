@@ -1,6 +1,14 @@
 const { Sale, Product, SaleProduct } = require('../../database/models');
 const RequestError = require('../utils/RequestError');
 
+const formatSale = (sale) => ({
+  ...sale,
+  products: sale.products
+    .map(({ id, name, price, urlImage, SaleProduct: { quantity } }) => ({
+      id, name, price, urlImage, quantity,
+  })),
+});
+
 module.exports = {
   create: async (newSale) => {
     const { userId, sellerId, deliveryAddress, deliveryNumber, products: bought } = newSale;
@@ -25,37 +33,37 @@ module.exports = {
     return created;
   },
 
-  findAll: async () => Sale.findAll({
-    include: [
-      {
-        model: SaleProduct,
-        as: 'products',
-        attributes: { exclude: ['saleId', 'SaleId'] },
-      },
-    ],
-  }),
+  findAll: async () => {
+    const sales = await Sale.findAll({
+      include: [
+        { model: Product, as: 'products' },
+      ],
+    });
+
+    return sales
+      .map((sale) => sale.get({ plain: true }))
+      .map(formatSale);
+  },
 
   findOne: async (id) => {
     const sale = await Sale.findOne({
       where: { id },
       include: [
-        {
-          model: SaleProduct,
-          as: 'products',
-          attributes: { exclude: ['saleId', 'SaleId'] },
-        },
+        { model: Product, as: 'products' },
       ],
     });
 
     if (!sale) throw RequestError.saleNotFound();
 
-    return sale;
+    return formatSale(sale.get({ plain: true }));
   },
 
   findByUserId: async (id) => {
     const allSales = await Sale.findAll();
     return allSales
-      .filter((sale) => sale.userId === +id || sale.sellerId === +id);
+      .filter((sale) => sale.userId === +id || sale.sellerId === +id)
+      .map((sale) => sale.get({ plain: true }))
+      .map(formatSale);
   },
 
   updateStatus: async ({ id, status }) => {
@@ -66,6 +74,6 @@ module.exports = {
     sale.set({ status });
     await sale.save();
 
-    return sale;
+    return formatSale(sale.get({ plain: true }));
   },
 };
