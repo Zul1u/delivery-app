@@ -1,23 +1,26 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function ProductCard({
+const ProductCard = ({
   id, name, price, urlImage, increaseQtyFunc, decreaseQtyFunc, qtyInput,
-}) {
+}) => {
   return (
     <div>
       {/* Product price */}
       <span data-testid={ `customer_products__element-card-price-${id}` }>
-        R$
         {price}
       </span>
 
       {/* Product image */}
-      <img
-        data-testid={ `customer_products__img-card-bg-image-${id}` }
-        src={ urlImage }
-        alt=""
-      />
+      <a href={ urlImage }>
+        <img
+          data-testid={ `customer_products__img-card-bg-image-${id}` }
+          src={ urlImage }
+          alt=""
+          width="150px"
+        />
+
+      </a>
 
       {/* Product name */}
       <span data-testid={ `customer_products__element-card-title-${id}` }>
@@ -26,29 +29,34 @@ function ProductCard({
 
       <div>
         {/* Decrease item quantity */}
-        <input
+        <button
           data-testid={ `customer_products__button-card-rm-item-${id}` }
           type="button"
           name="decreaseQty"
-          value={ decreaseQtyFunc }
-        />
+          onClick={ decreaseQtyFunc }
+        >
+          -
+        </button>
 
         {/* Item quantity */ }
         <input
           data-testid={ `customer_products__input-card-quantity-${id}` }
-          type="text"
+          type="number"
           name="qty"
           id="qty"
           value={ qtyInput }
         />
 
         {/* Increase item quantity */}
-        <input
+        <button
+        // customer_products__button-card-add-item-<id>
           data-testid={ `customer_products__button-card-add-item-${id}` }
           type="button"
           name="increaseQty"
-          value={ increaseQtyFunc }
-        />
+          onClick={ increaseQtyFunc }
+        >
+          +
+        </button>
       </div>
 
     </div>
