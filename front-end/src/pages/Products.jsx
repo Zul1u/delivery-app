@@ -4,7 +4,7 @@ import ProductCard from '../components/ProductCard';
 import replaceDot from '../helpers/replaceDot';
 import DELIVERY_API from '../redux/services/api.fetch';
 
-const Products = () => {
+function Products() {
   const [productList, setProductList] = useState([]);
   const products = DELIVERY_API.getProducts();
 

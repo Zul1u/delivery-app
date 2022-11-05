@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const ProductCard = ({
+function ProductCard({
   id, name, price, urlImage, increaseQtyFunc, decreaseQtyFunc, qtyInput,
-}) => {
+}) {
   return (
     <div>
       {/* Product price */}
