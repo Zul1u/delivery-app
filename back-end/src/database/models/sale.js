@@ -35,7 +35,8 @@ const Sale = (sequelize, DataTypes) => {
       as: 'seller',
       foreignKey: 'sellerId',
     });
-    Sale.hasMany(models.SaleProduct, {
+    Sale.belongsToMany(models.Product, {
+      through: models.SaleProduct,
       as: 'products',
     })
   };
