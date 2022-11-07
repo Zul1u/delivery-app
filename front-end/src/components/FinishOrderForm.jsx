@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import DELIVERY_API from '../redux/services/api.fetch';
+import StorageManager from '../utils/StorageManager';
 
 function FinishOrderForm({ userId, products }) {
   const [formState, setFormState] = useState({
@@ -41,6 +42,7 @@ function FinishOrderForm({ userId, products }) {
     };
     console.log(saleObj);
     const { data: { id } } = await sendSale(saleObj);
+    StorageManager.eraseCart();
     navigate(`/customer/orders/${id}`);
   };
 
