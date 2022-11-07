@@ -105,7 +105,7 @@ function List({ type, data, checkout }) {
     return productList;
 
   default:
-    return <div />;
+    break;
   }
 }
 
