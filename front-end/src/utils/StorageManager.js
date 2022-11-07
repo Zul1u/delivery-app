@@ -6,8 +6,8 @@ class StorageManager {
    * @params data The exact data that comes from the API.
   */
   static saveUser(data) {
-    const { token, user: { name, email, role } } = data;
-    const storedUser = { token, name, email, role };
+    const { token, user: { name, email, role, id } } = data;
+    const storedUser = { token, name, email, role, id };
     localStorage.setItem(USER_KEY, JSON.stringify(storedUser));
   }
 
