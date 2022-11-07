@@ -1,4 +1,5 @@
 const USER_KEY = 'user';
+const CART = 'cart';
 
 class StorageManager {
   /**
@@ -32,6 +33,49 @@ class StorageManager {
   static getToken() {
     const user = localStorage.getItem(USER_KEY);
     return user ? JSON.parse(user).token : 'No user stored.';
+  }
+
+  static saveCart(data) {
+    const { id, name, quantity, unitPrice } = data;
+    const previousCart = this.loadCart();
+
+    const productIndex = previousCart.findIndex((product) => +product.id === +id);
+    if (productIndex < 0) {
+      const storedCart = [...previousCart, { id, name, quantity, unitPrice }];
+      this.eraseCart();
+      localStorage.setItem(CART, JSON.stringify(storedCart));
+    }
+
+    if (productIndex >= 0) {
+      previousCart[productIndex].quantity = quantity;
+      this.eraseCart();
+      localStorage.setItem(CART, JSON.stringify(previousCart));
+    }
+  }
+
+  static removeCart(data) {
+    const { id } = data;
+    const previousCart = this.loadCart();
+
+    const productIndex = previousCart.findIndex((product) => +product.id === +id);
+    if (productIndex < 0) {
+      return false;
+    }
+
+    if (productIndex >= 0) {
+      const removing = previousCart.filter((product) => +product.id !== +id);
+      this.eraseCart();
+      localStorage.setItem(CART, JSON.stringify(removing));
+    }
+  }
+
+  static loadCart() {
+    const cart = localStorage.getItem(CART);
+    return JSON.parse(cart) || [];
+  }
+
+  static eraseCart() {
+    localStorage.removeItem(CART);
   }
 }
 
