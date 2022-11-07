@@ -21,7 +21,7 @@ function List({ type, data, checkout }) {
       type="button"
       onClick={ onClick }
     >
-      {name}
+      { name }
     </button>
   );
 
@@ -111,7 +111,11 @@ function List({ type, data, checkout }) {
 
 List.propTypes = {
   type: PropTypes.string.isRequired,
-  data: PropTypes.arrayOf(PropTypes).isRequired,
+  data: PropTypes.arrayOf(
+    PropTypes.objectOf(
+      PropTypes.string.isRequired || PropTypes.number.isRequired,
+    ).isRequired,
+  ).isRequired,
   checkout: PropTypes.bool.isRequired,
 };
 
