@@ -26,6 +26,12 @@ module.exports = {
     res.status(StatusCodes.OK).json(sales);
   },
 
+  findByToken: async (req, res) => {
+    const { headers: { userId } } = req;
+    const sales = await saleService.findByUserId(userId);
+    res.status(StatusCodes.OK).json(sales);
+  },
+
   getStatuses: async (_req, res) => {
     res.status(StatusCodes.OK).json(saleStatuses); 
   },
