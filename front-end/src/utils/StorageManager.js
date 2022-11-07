@@ -39,9 +39,9 @@ class StorageManager {
     const { id, name, quantity, unitPrice } = data;
     const previousCart = this.loadCart();
 
-    const productIndex = previousCart.findIndex((product) => +product.id === +id)
+    const productIndex = previousCart.findIndex((product) => +product.id === +id);
     if (productIndex < 0) {
-      const storedCart = [ ...previousCart, { id, name, quantity, unitPrice }];
+      const storedCart = [...previousCart, { id, name, quantity, unitPrice }];
       this.eraseCart();
       localStorage.setItem(CART, JSON.stringify(storedCart));
     }
@@ -57,13 +57,13 @@ class StorageManager {
     const { id } = data;
     const previousCart = this.loadCart();
 
-    const productIndex = previousCart.findIndex((product) => +product.id === +id)
+    const productIndex = previousCart.findIndex((product) => +product.id === +id);
     if (productIndex < 0) {
       return false;
     }
 
     if (productIndex >= 0) {
-      const removing = previousCart.filter((product) => +product.id !== +id)
+      const removing = previousCart.filter((product) => +product.id !== +id);
       this.eraseCart();
       localStorage.setItem(CART, JSON.stringify(removing));
     }
@@ -77,7 +77,6 @@ class StorageManager {
   static eraseCart() {
     localStorage.removeItem(CART);
   }
-
 }
 
 export default StorageManager;
