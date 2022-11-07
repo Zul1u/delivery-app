@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import replaceDot from '../helpers/replaceDot';
 
 function ProductCard({
   id, name, price, urlImage, increaseQtyFunc, decreaseQtyFunc, qtyInput,
@@ -8,7 +9,7 @@ function ProductCard({
     <div>
       {/* Product price */}
       <span data-testid={ `customer_products__element-card-price-${id}` }>
-        {price}
+        { `Valor: R$ ${replaceDot(price)}` }
       </span>
 
       {/* Product image */}
@@ -58,7 +59,6 @@ function ProductCard({
           +
         </button>
       </div>
-
     </div>
   );
 }
