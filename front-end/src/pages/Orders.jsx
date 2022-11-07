@@ -3,9 +3,7 @@ import Header from '../components/Header';
 import OrderCard from '../components/OrderCard';
 import DELIVERY_API from '../redux/services/api.fetch';
 import StorageManager from '../utils/StorageManager';
-// As vendas, quase idêntica em
-// Order do vendedor
-// Order do cliente
+
 export default function Orders() {
   const { data: orders, isLoading } = DELIVERY_API.getSaleByToken();
   const getRole = StorageManager.loadUser().role;

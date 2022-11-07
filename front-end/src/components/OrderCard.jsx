@@ -1,11 +1,6 @@
-// Presente na Orders de
-// cliente
-// vendedor
-
-// Renderiza condicionalmente o endereço do pedido se
-// estiver na página de Orders do vendedor
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 function OrderCard({
   id, totalPrice, saleDate, status,
@@ -13,37 +8,34 @@ function OrderCard({
 }) {
   return (
     <div>
-      {/* Order Id */}
-      <span data-testid={ `${role}_orders__element-order-id-${id}` }>
-        Pedido
-        {id}
-      </span>
+      <Link to={ `/${role}/orders/${id}` }>
+        <span data-testid={ `${role}_orders__element-order-id-${id}` }>
+          Pedido
+          {id}
+        </span>
 
-      {/* Order status */}
-      <span data-testid={ `${role}_orders__element-delivery-status-${id}` }>
-        {status}
-      </span>
+        <span data-testid={ `${role}_orders__element-delivery-status-${id}` }>
+          {status}
+        </span>
 
-      {/* Order sale date */}
-      <span data-test id={ `${role}_orders__element-order-date-${id}` }>
-        {saleDate}
-      </span>
+        <span data-test id={ `${role}_orders__element-order-date-${id}` }>
+          {saleDate}
+        </span>
 
-      {/* Order total price */}
-      <span data-testid={ `${role}_orders__element-card-price-${totalPrice}` }>
-        R$
-        {totalPrice}
-      </span>
+        <span data-testid={ `${role}_orders__element-card-price-${totalPrice}` }>
+          R$
+          {totalPrice}
+        </span>
 
-      {/* Order adress */}
-      {
-        isSeller && (
-          <span data-testid={ `${role}_orders__element-card-address-${id}` }>
-            {deliveryAdress}
-            {deliveryNumber}
-          </span>
-        )
-      }
+        {
+          isSeller && (
+            <span data-testid={ `${role}_orders__element-card-address-${id}` }>
+              {deliveryAdress}
+              {deliveryNumber}
+            </span>
+          )
+        }
+      </Link>
     </div>
   );
 }
