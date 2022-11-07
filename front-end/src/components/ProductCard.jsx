@@ -4,6 +4,7 @@ import replaceDot from '../helpers/replaceDot';
 
 function ProductCard({
   id, name, price, urlImage, increaseQtyFunc, decreaseQtyFunc, qtyInput,
+  handleChange,
 }) {
   return (
     <div>
@@ -46,6 +47,7 @@ function ProductCard({
           name="qty"
           id="qty"
           value={ qtyInput }
+          onChange={ handleChange }
         />
 
         {/* Increase item quantity */}
@@ -71,6 +73,7 @@ ProductCard.propTypes = {
   increaseQtyFunc: PropTypes.func.isRequired,
   decreaseQtyFunc: PropTypes.func.isRequired,
   qtyInput: PropTypes.number.isRequired,
+  handleChange: PropTypes.func.isRequired,
 };
 
 export default ProductCard;

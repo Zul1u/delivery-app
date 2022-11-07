@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
 import ProductCard from '../components/ProductCard';
 import replaceDot from '../helpers/replaceDot';
@@ -37,16 +37,28 @@ function Products() {
   }, [products]);
 
   useEffect(() => {
-    const updateCart = StorageManager.loadCart()
+    const updateCart = StorageManager.loadCart();
     setCart(updateCart);
   }, [productList]);
+
+  const cartTotalPrice = () => {
+    let cartValue = 0.00;
+    let pricing = replaceDot(cartValue.toFixed(2));
+
+    cart.forEach((product) => {
+      cartValue += (+product.unitPrice * product.quantity);
+      pricing = replaceDot(cartValue.toFixed(2));
+    });
+
+    setTotalPrice(pricing);
+  };
 
   useEffect(() => {
     cart.forEach((cartItem) => {
       productList.forEach((product) => {
         if (product.id === cartItem.id) product.quantity = cartItem.quantity;
-      })
-    })
+      });
+    });
 
     cartTotalPrice();
   }, [cart]);
@@ -82,32 +94,23 @@ function Products() {
     }
   };
 
-  const handleInputChange = ({target}) => {
+  const handleInputChange = ({ target }, id) => {
     const index = productList.findIndex((prod) => prod.id === +id);
 
-    if (productList[index].quantity < 0) {
-      productList[index].quantity = 0;
-      StorageManager.saveCart(productList[index]);
-    }
-
-    productList[index].quantity = 
+    productList[index].quantity = +target.value;
 
     setProductList([
       ...productList,
     ]);
-  }
 
-  const cartTotalPrice = () => {
-    let cartValue = 0.00;
-    let pricing = replaceDot(cartValue.toFixed(2));
+    if (productList[index].quantity > 0) {
+      StorageManager.saveCart(productList[index]);
+    }
 
-    cart.forEach((product) => {
-      cartValue += (+product.unitPrice * product.quantity);
-      pricing = replaceDot(cartValue.toFixed(2));
-    })
-
-    setTotalPrice(pricing);
-  }
+    if (productList[index].quantity <= 0) {
+      StorageManager.removeCart(productList[index]);
+    }
+  };
 
   return (
     <div>
@@ -126,13 +129,14 @@ function Products() {
           decreaseQtyFunc={ () => (
             handleDecreaseButton(product.id)
           ) }
+          handleChange={ (event) => handleInputChange(event, product.id) }
         />
       ))}
       <button
         type="button"
         data-testid="customer_products__button-cart"
         onClick={ () => navigate('/customer/checkout') }
-        disabled={ totalPrice !== '0,00' ? false : true }
+        disabled={ totalPrice === '0,00' }
       >
         <span
           data-testid="customer_products__checkout-bottom-value"
