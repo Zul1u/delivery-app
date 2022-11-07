@@ -1,7 +1,9 @@
-import { useCreateSaleMutation, useCreateUserMutation, useDeleteUserMutation,
+import {
+  useCreateSaleMutation, useCreateUserMutation, useDeleteUserMutation,
   useGetProductByIdQuery, useGetProductsQuery, useGetRolesQuery, useGetSaleByIdQuery,
   useGetSaleByUserIdQuery, useGetSalesQuery, useGetSaleStatusesQuery, useGetUserByIdQuery,
-  useGetUsersQuery, useLoginMutation, useUpdateSaleStatusMutation } from './api.query';
+  useGetUsersQuery, useLoginMutation, useUpdateSaleStatusMutation, useGetSaleByTokenQuery,
+} from './api.query';
 
 const DELIVERY_API = {
   login: useLoginMutation,
@@ -11,6 +13,7 @@ const DELIVERY_API = {
   deleteUser: useDeleteUserMutation,
   getSales: useGetSalesQuery,
   getSaleById: useGetSaleByIdQuery,
+  getSaleByToken: useGetSaleByTokenQuery,
   getSaleByUserId: useGetSaleByUserIdQuery,
   createSale: useCreateSaleMutation,
   updateSale: useUpdateSaleStatusMutation,

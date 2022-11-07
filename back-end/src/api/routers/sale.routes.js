@@ -9,6 +9,8 @@ saleRouter.get('/statuses', saleController.getStatuses);
 
 saleRouter.get('/user/:id', auth.any, saleController.findByUserId);
 
+saleRouter.get('/user', auth.any, saleController.findByToken);
+
 saleRouter.get('/:id', saleController.findOne);
 
 saleRouter.post('/', auth.any, validate.newSale, saleController.create);
