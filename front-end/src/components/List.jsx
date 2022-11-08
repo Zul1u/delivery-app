@@ -2,9 +2,8 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import replaceDot from '../helpers/replaceDot';
 import DELIVERY_API from '../redux/services/api.fetch';
-import StorageManager from '../utils/StorageManager';
 
-function List({ type, data, checkout }) {
+function List({ type, data, checkout, removeItem }) {
   const [deleteUser] = DELIVERY_API.deleteUser();
   const [totalPrice, setTotalPrice] = useState(0);
 
@@ -22,12 +21,6 @@ function List({ type, data, checkout }) {
     const row = parentNode;
     deleteUser(row.parentNode.id);
     row.parentNode.remove();
-  };
-
-  const removeItem = ({ target: { parentNode: { parentNode } } }) => {
-    const row = parentNode;
-    row.remove();
-    StorageManager.removeCart({ id: row.id });
   };
 
   const removeButton = (name, onClick) => (
@@ -172,6 +165,7 @@ List.propTypes = {
     PropTypes.shape().isRequired,
   ).isRequired,
   checkout: PropTypes.bool.isRequired,
+  removeItem: PropTypes.func.isRequired,
 };
 
 export default List;

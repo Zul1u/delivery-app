@@ -24,10 +24,22 @@ export default function CheckoutPage() {
     setProductsObject({ ...newIdObject });
   }, [products]);
 
+  const removeItem = ({ target: { parentNode: { parentNode } } }) => {
+    const row = parentNode;
+    StorageManager.removeCart({ id: row.id });
+
+    setProducts(StorageManager.loadCart());
+  };
+
   return (
     <div>
       <Header />
-      <List type="product" data={ products } checkout />
+      <List
+        type="product"
+        data={ products }
+        checkout
+        removeItem={ removeItem }
+      />
       <FinishOrderForm userId={ userId } products={ productsObject } />
     </div>
   );
