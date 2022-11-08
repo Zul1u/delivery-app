@@ -63,7 +63,13 @@ module.exports = {
   },
 
   findByUserId: async (id) => {
-    const allSales = await Sale.findAll();
+    const allSales = await Sale.findAll({
+      include: [
+        { model: Product, as: 'products' },
+        { model: User, as: 'customer', attributes: { exclude: ['password', 'role'] } },
+        { model: User, as: 'seller', attributes: { exclude: ['password', 'role'] } },
+      ],
+    });
     return allSales
       .filter((sale) => sale.userId === +id || sale.sellerId === +id)
       .map((sale) => sale.get({ plain: true }))
