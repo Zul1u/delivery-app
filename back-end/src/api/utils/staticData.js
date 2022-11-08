@@ -5,10 +5,10 @@ const userRoles = {
 };
 
 const saleStatuses = {
-  pendente: 'Pendente',
-  preparando: 'Preparando',
-  emTransito: 'Em Trânsito',
-  entregue: 'Entregue',
+  pending: 'Pendente',
+  preparing: 'Preparando',
+  inTransit: 'Em Trânsito',
+  delivered: 'Entregue',
 };
 
 module.exports = {
