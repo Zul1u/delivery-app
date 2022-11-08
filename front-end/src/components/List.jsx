@@ -111,11 +111,7 @@ function List({ type, data, checkout }) {
 
 List.propTypes = {
   type: PropTypes.string.isRequired,
-  data: PropTypes.arrayOf(
-    PropTypes.objectOf(
-      PropTypes.string.isRequired || PropTypes.number.isRequired,
-    ).isRequired,
-  ).isRequired,
+  data: PropTypes.arrayOf(PropTypes.shape()).isRequired,
   checkout: PropTypes.bool.isRequired,
 };
 
