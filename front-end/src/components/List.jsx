@@ -10,7 +10,7 @@ function List({ type, data, checkout, removeItem }) {
   useEffect(() => {
     let total = 0;
     data.forEach((item) => {
-      total += +item.quantity * +item.unitPrice;
+      total += +item.quantity * +item.price;
     });
 
     setTotalPrice(total);
@@ -118,14 +118,14 @@ function List({ type, data, checkout, removeItem }) {
                     `customer_checkout__element-order-table-unit-price-${index}`
                   }
                 >
-                  {`R$ ${replaceDot((+item.unitPrice).toFixed(2))}`}
+                  {`R$ ${replaceDot((+item.price).toFixed(2))}`}
                 </td>
                 <td
                   data-testid={
                     `customer_checkout__element-order-table-sub-total-${index}`
                   }
                 >
-                  {`R$ ${replaceDot((+item.unitPrice * +item.quantity).toFixed(2))}`}
+                  {`R$ ${replaceDot((+item.price * +item.quantity).toFixed(2))}`}
                 </td>
                 {checkout ? (
                   <td
