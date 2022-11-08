@@ -16,13 +16,8 @@ function OrderDetails() {
   // func(1, 'Entregue');
 
   return (
-    <>
-      <button
-        type="button"
-        onClick={ () => func({ id: 1, status: 'Entregue' }) }
-      >
-        HA
-      </button>
+    <div>
+
       <Header />
       {(saleLoading || statsLoading) ? (
         <p>Loading</p>
@@ -44,7 +39,7 @@ function OrderDetails() {
         </>
       )}
 
-    </>
+    </div>
   );
 }
 
