@@ -19,7 +19,7 @@ const Sale = (sequelize, DataTypes) => {
     },
     status: {
       type: DataTypes.STRING,
-      defaultValue: saleStatuses.pendente,
+      defaultValue: saleStatuses.pending,
     },
   }, {
     timestamps: false,
