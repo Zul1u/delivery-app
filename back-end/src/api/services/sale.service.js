@@ -78,6 +78,6 @@ module.exports = {
     sale.set({ status });
     await sale.save();
 
-    return formatSale(sale.get({ plain: true }));
+    return sale;
   },
 };
