@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import replaceDot from '../helpers/replaceDot';
 import DELIVERY_API from '../redux/services/api.fetch';
+import StorageManager from '../utils/StorageManager';
 
 function List({ type, data, checkout }) {
   const [deleteUser] = DELIVERY_API.deleteUser();
@@ -22,9 +24,10 @@ function List({ type, data, checkout }) {
     row.parentNode.remove();
   };
 
-  const removeItem = ({ target: { parentNode } }) => {
+  const removeItem = ({ target: { parentNode: { parentNode } } }) => {
     const row = parentNode;
-    row.parentNode.remove();
+    row.remove();
+    StorageManager.removeCart({ id: row.id });
   };
 
   const removeButton = (name, onClick) => (
@@ -101,7 +104,7 @@ function List({ type, data, checkout }) {
                     `customer_checkout__element-order-table-item-number-${index}`
                   }
                 >
-                  {index + 1}
+                  {(index + 1).toString()}
                 </td>
                 <td
                   data-testid={
@@ -122,14 +125,14 @@ function List({ type, data, checkout }) {
                     `customer_checkout__element-order-table-unit-price-${index}`
                   }
                 >
-                  {item.unitPrice}
+                  {`R$ ${replaceDot((+item.unitPrice).toFixed(2))}`}
                 </td>
                 <td
                   data-testid={
                     `customer_checkout__element-order-table-sub-total-${index}`
                   }
                 >
-                  {item.unitPrice * item.quantity}
+                  {`R$ ${replaceDot((+item.unitPrice * +item.quantity).toFixed(2))}`}
                 </td>
                 {checkout ? (
                   <td
@@ -146,7 +149,7 @@ function List({ type, data, checkout }) {
         </tbody>
       </table>
       <span data-testid="customer_checkout__element-order-total-price">
-        { totalPrice }
+        {`Valor total: ${replaceDot(totalPrice.toFixed(2))}`}
       </span>
     </div>
   );
