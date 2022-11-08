@@ -87,8 +87,8 @@ function List({ type, data, checkout }) {
               <td>{index + 1}</td>
               <td>{item.name}</td>
               <td>{item.quantity}</td>
-              <td>{item.unitPrice}</td>
-              <td>{item.unitPrice * item.quantity}</td>
+              <td>{item.price}</td>
+              <td>{item.price * item.quantity}</td>
               {checkout ? (<td>{removeButton('Remover', removeItem)}</td>) : null}
             </tr>
           ))
