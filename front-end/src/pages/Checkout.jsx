@@ -19,7 +19,7 @@ export default function CheckoutPage() {
   useEffect(() => {
     const newIdObject = {};
     products.forEach((prod) => {
-      newIdObject[prod.id] = prod.id;
+      newIdObject[prod.id] = prod.quantity;
     });
     setProductsObject({ ...newIdObject });
   }, [products]);
