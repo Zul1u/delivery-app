@@ -6,7 +6,7 @@ import StorageManager from '../utils/StorageManager';
 
 function FinishOrderForm({ userId, products }) {
   const [formState, setFormState] = useState({
-    responsibleSeller: '', sellerId: 0, deliveryAddress: '', deliveryNumber: '',
+    responsibleSeller: 0, sellerId: 0, deliveryAddress: '', deliveryNumber: '',
   });
   const [responsibleSellersList, setResponsibleSellersList] = useState([]);
   const { data: users, isLoading } = DELIVERY_API.getAllUsers();
@@ -17,10 +17,10 @@ function FinishOrderForm({ userId, products }) {
     if (!isLoading) {
       const responsibles = users.filter((user) => user.role === 'seller');
 
-      setFormState({ ...formState, responsibleSeller: responsibles[0].name });
+      setFormState({ ...formState, responsibleSeller: responsibles[0].id });
       setResponsibleSellersList(responsibles);
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [users]);
 
   const handleChange = ({ target: { name, value } }) => {
@@ -30,20 +30,21 @@ function FinishOrderForm({ userId, products }) {
   const finishOrder = async () => {
     const { responsibleSeller, deliveryAddress, deliveryNumber } = formState;
 
-    const sellerId = responsibleSellersList
-      .find((seller) => seller.name === responsibleSeller).id;
-
     const saleObj = {
       userId,
-      sellerId,
+      sellerId: +responsibleSeller,
       deliveryAddress,
       deliveryNumber,
       products,
     };
-    console.log(saleObj);
-    const { data: { id } } = await sendSale(saleObj);
-    StorageManager.eraseCart();
-    navigate(`/customer/orders/${id}`);
+
+    const response = await sendSale(saleObj);
+
+    if (response.data) {
+      StorageManager.eraseCart();
+      return navigate(`/customer/orders/${response.data.id}`);
+    }
+    console.error(response);
   };
 
   if (isLoading) {
@@ -65,7 +66,7 @@ function FinishOrderForm({ userId, products }) {
             { responsibleSellersList.map((seller) => (
               <option
                 key={ seller.email }
-                value={ seller.name }
+                value={ seller.id }
               >
                 { seller.name }
               </option>
@@ -102,11 +103,11 @@ function FinishOrderForm({ userId, products }) {
         </label>
       </div>
       <button
-        data-testid="customer_checkout__button-submit-order"
         type="button"
-        onClick={ () => finishOrder() }
+        data-testid="customer_checkout__button-submit-order"
+        onClick={ finishOrder }
       >
-        Finalizar Compra
+        Finalizar Pedido
       </button>
     </form>
   );
