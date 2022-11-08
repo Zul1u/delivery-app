@@ -5,7 +5,6 @@ import LoginPage from './pages/Login';
 import Orders from './pages/Orders';
 import Products from './pages/Products';
 import RegisterPage from './pages/Register';
-import Products from './pages/Products';
 import CheckoutPage from './pages/Checkout';
 
 function App() {
