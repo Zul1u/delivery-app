@@ -55,7 +55,7 @@ export const deliveryAPI = createApi({
       query: (payload) => ({ url: 'sales/', method: 'POST', body: payload }),
     }),
     updateSaleStatus: builder.mutation({
-      query: (id, status) => ({ url: `sales/${id}/${status}`, method: 'PATCH' }),
+      query: ({ id, status }) => ({ url: `sales/${id}/${status}`, method: 'PATCH' }),
     }),
     getProducts: builder.query({
       query: () => 'products/',
