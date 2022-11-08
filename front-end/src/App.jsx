@@ -2,6 +2,7 @@ import React from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import './App.css';
 import LoginPage from './pages/Login';
+import Orders from './pages/Orders';
 import OrderDetails from './pages/OrderDetails';
 import Products from './pages/Products';
 import RegisterPage from './pages/Register';
@@ -15,6 +16,8 @@ function App() {
       <Route path="/customer/products" element={ <Products /> } />
       <Route path="/seller/orders/:orderId" element={ <OrderDetails /> } />
       <Route path="/customer/orders/:orderId" element={ <OrderDetails /> } />
+      <Route path="/customer/orders" element={ <Orders /> } />
+      <Route path="/seller/orders" element={ <Orders /> } />
     </Routes>
   );
 }
