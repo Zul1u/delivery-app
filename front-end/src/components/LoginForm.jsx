@@ -23,7 +23,7 @@ export default function LoginForm() {
   const selectRoute = ({ user }) => {
     switch (user.role) {
     case 'seller':
-      return navigate('/seller/checkout');
+      return navigate('/seller/orders');
     case 'administrator':
       return navigate('/admin/manage');
     default:
