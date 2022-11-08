@@ -1,4 +1,4 @@
-const { Sale, Product, SaleProduct } = require('../../database/models');
+const { Sale, Product, SaleProduct, User } = require('../../database/models');
 const RequestError = require('../utils/RequestError');
 
 const formatSale = (sale) => ({
@@ -37,6 +37,8 @@ module.exports = {
     const sales = await Sale.findAll({
       include: [
         { model: Product, as: 'products' },
+        { model: User, as: 'customer', attributes: { exclude: ['password', 'role'] } },
+        { model: User, as: 'seller', attributes: { exclude: ['password', 'role'] } },
       ],
     });
 
@@ -50,6 +52,8 @@ module.exports = {
       where: { id },
       include: [
         { model: Product, as: 'products' },
+        { model: User, as: 'customer', attributes: { exclude: ['password', 'role'] } },
+        { model: User, as: 'seller', attributes: { exclude: ['password', 'role'] } },
       ],
     });
 
