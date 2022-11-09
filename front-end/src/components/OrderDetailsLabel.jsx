@@ -47,8 +47,11 @@ function OrderDetailsLabel(
           <button
             data-testid={ `${testPrefix}button-preparing-check` }
             type="button"
-            disabled={ saleStatus !== statuses.pending }
-            onClick={ () => updateSale({ id, status: statuses.preparing }) }
+            disabled={ status !== statuses.pending }
+            onClick={ () => {
+              updateSale({ id, status: statuses.preparing });
+              setStatus(statuses.preparing);
+            } }
           >
             PREPARAR PEDIDO
           </button>
@@ -56,12 +59,14 @@ function OrderDetailsLabel(
           <button
             data-testid={ `${testPrefix}button-dispatch-check` }
             type="button"
-            disabled={ saleStatus !== statuses.preparing }
-            onClick={ () => updateSale({ id, status: statuses.inTransit }) }
+            disabled={ status !== statuses.preparing }
+            onClick={ () => {
+              updateSale({ id, status: statuses.inTransit });
+              setStatus(statuses.inTransit);
+            } }
           >
             SAIU PARA ENTREGA
           </button>
-
         </>
       )}
     </div>
