@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function OrderDetailsHeader({ id, saleStatus, statuses, date, sellerName, updateSale }) {
+function OrderDetailsLabel({ id, saleStatus, statuses, date, sellerName, updateSale }) {
   return (
     <div>
       {/* Número do pedido */}
@@ -51,7 +51,7 @@ function OrderDetailsHeader({ id, saleStatus, statuses, date, sellerName, update
   );
 }
 
-OrderDetailsHeader.propTypes = {
+OrderDetailsLabel.propTypes = {
   id: PropTypes.string.isRequired,
   sellerName: PropTypes.string,
   saleStatus: PropTypes.string.isRequired,
@@ -65,8 +65,8 @@ OrderDetailsHeader.propTypes = {
   updateSale: PropTypes.func.isRequired,
 };
 
-OrderDetailsHeader.defaultProps = {
+OrderDetailsLabel.defaultProps = {
   sellerName: '',
 };
 
-export default OrderDetailsHeader;
+export default OrderDetailsLabel;

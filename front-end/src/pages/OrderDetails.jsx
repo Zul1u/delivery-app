@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
 import Header from '../components/Header';
 import List from '../components/List';
-import OrderDetailsHeader from '../components/OrderDetailsHeader';
+import OrderDetailsLabel from '../components/OrderDetailsLabel';
 import formatDate from '../helpers/formatDate';
 import DELIVERY_API from '../redux/services/api.fetch';
 import StorageManager from '../utils/StorageManager';
@@ -23,7 +23,7 @@ function OrderDetails() {
         <p>Loading</p>
       ) : (
         <>
-          <OrderDetailsHeader
+          <OrderDetailsLabel
             id={ orderId }
             saleStatus={ order?.status || '' }
             statuses={ statuses }
