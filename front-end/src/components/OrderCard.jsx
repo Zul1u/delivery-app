@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import replaceDot from '../helpers/replaceDot';
 
 function OrderCard({
   id, totalPrice, saleDate, status,
@@ -10,21 +11,19 @@ function OrderCard({
     <div>
       <Link to={ `/${role}/orders/${id}` }>
         <span data-testid={ `${role}_orders__element-order-id-${id}` }>
-          Pedido
-          {id}
+          {`Pedido${id}`}
         </span>
 
         <span data-testid={ `${role}_orders__element-delivery-status-${id}` }>
           {status}
         </span>
 
-        <span data-test id={ `${role}_orders__element-order-date-${id}` }>
+        <span data-testid={ `${role}_orders__element-order-date-${id}` }>
           {saleDate}
         </span>
 
-        <span data-testid={ `${role}_orders__element-card-price-${totalPrice}` }>
-          R$
-          {totalPrice}
+        <span data-testid={ `${role}_orders__element-card-price-${id}` }>
+          { replaceDot(totalPrice)}
         </span>
 
         {

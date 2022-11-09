@@ -24,7 +24,7 @@ function Products() {
           id: e.id,
           name: e.name,
           quantity: 0,
-          unitPrice: e.price,
+          price: e.price,
           image: e.urlImage,
         };
         return object;
@@ -46,7 +46,7 @@ function Products() {
     let pricing = replaceDot(cartValue.toFixed(2));
 
     cart.forEach((product) => {
-      cartValue += (+product.unitPrice * product.quantity);
+      cartValue += (+product.price * product.quantity);
       pricing = replaceDot(cartValue.toFixed(2));
     });
 
@@ -120,7 +120,7 @@ function Products() {
           key={ i }
           id={ product.id }
           name={ product.name }
-          price={ replaceDot(product.unitPrice) }
+          price={ replaceDot(product.price) }
           urlImage={ product.image }
           qtyInput={ product.quantity }
           increaseQtyFunc={ () => (

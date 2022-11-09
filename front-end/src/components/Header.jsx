@@ -35,7 +35,7 @@ function Header() {
     <div>
       <HeaderRedirectBtn
         text="Pedidos"
-        url="/seller/products"
+        url="/seller/orders"
         testid="customer_products__element-navbar-link-orders"
       />
     </div>

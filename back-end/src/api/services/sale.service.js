@@ -1,5 +1,13 @@
-const { Sale, Product, SaleProduct } = require('../../database/models');
+const { Sale, Product, SaleProduct, User } = require('../../database/models');
 const RequestError = require('../utils/RequestError');
+
+const formatSale = (sale) => ({
+  ...sale,
+  products: sale.products
+    .map(({ id, name, price, urlImage, SaleProduct: { quantity } }) => ({
+      id, name, price, urlImage, quantity,
+  })),
+});
 
 module.exports = {
   create: async (newSale) => {
@@ -25,37 +33,47 @@ module.exports = {
     return created;
   },
 
-  findAll: async () => Sale.findAll({
-    include: [
-      {
-        model: SaleProduct,
-        as: 'products',
-        attributes: { exclude: ['saleId', 'SaleId'] },
-      },
-    ],
-  }),
+  findAll: async () => {
+    const sales = await Sale.findAll({
+      include: [
+        { model: Product, as: 'products' },
+        { model: User, as: 'customer', attributes: { exclude: ['password', 'role'] } },
+        { model: User, as: 'seller', attributes: { exclude: ['password', 'role'] } },
+      ],
+    });
+
+    return sales
+      .map((sale) => sale.get({ plain: true }))
+      .map(formatSale);
+  },
 
   findOne: async (id) => {
     const sale = await Sale.findOne({
       where: { id },
       include: [
-        {
-          model: SaleProduct,
-          as: 'products',
-          attributes: { exclude: ['saleId', 'SaleId'] },
-        },
+        { model: Product, as: 'products' },
+        { model: User, as: 'customer', attributes: { exclude: ['password', 'role'] } },
+        { model: User, as: 'seller', attributes: { exclude: ['password', 'role'] } },
       ],
     });
 
     if (!sale) throw RequestError.saleNotFound();
 
-    return sale;
+    return formatSale(sale.get({ plain: true }));
   },
 
   findByUserId: async (id) => {
-    const allSales = await Sale.findAll();
+    const allSales = await Sale.findAll({
+      include: [
+        { model: Product, as: 'products' },
+        { model: User, as: 'customer', attributes: { exclude: ['password', 'role'] } },
+        { model: User, as: 'seller', attributes: { exclude: ['password', 'role'] } },
+      ],
+    });
     return allSales
-      .filter((sale) => sale.userId === +id || sale.sellerId === +id);
+      .filter((sale) => sale.userId === +id || sale.sellerId === +id)
+      .map((sale) => sale.get({ plain: true }))
+      .map(formatSale);
   },
 
   updateStatus: async ({ id, status }) => {

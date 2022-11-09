@@ -36,12 +36,12 @@ class StorageManager {
   }
 
   static saveCart(data) {
-    const { id, name, quantity, unitPrice } = data;
+    const { id, name, quantity, price } = data;
     const previousCart = this.loadCart();
 
     const productIndex = previousCart.findIndex((product) => +product.id === +id);
     if (productIndex < 0) {
-      const storedCart = [...previousCart, { id, name, quantity, unitPrice }];
+      const storedCart = [...previousCart, { id, name, quantity, price }];
       this.eraseCart();
       localStorage.setItem(CART, JSON.stringify(storedCart));
     }
