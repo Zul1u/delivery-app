@@ -12,8 +12,9 @@ function OrderDetails() {
   const { data: statuses, isLoading: statsLoading } = DELIVERY_API.getSaleStatuses();
   const [updateSale] = DELIVERY_API.updateSale();
   const { role } = StorageManager.loadUser();
-
-  // func(1, 'Entregue');
+  const testPrefix = role === 'customer'
+    ? 'customer_order_details__'
+    : 'seller_order_details__';
 
   return (
     <div>
@@ -30,11 +31,13 @@ function OrderDetails() {
             date={ order ? formatDate(order.saleDate) : '' }
             sellerName={ role === 'customer' ? order.seller.name : '' }
             updateSale={ updateSale }
+            testPrefix={ testPrefix }
           />
           <List
             type="product"
             data={ order.products }
             checkout={ false }
+            testPrefix={ testPrefix }
           />
         </>
       )}

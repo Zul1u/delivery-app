@@ -1,35 +1,47 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function OrderDetailsLabel({ id, saleStatus, statuses, date, sellerName, updateSale }) {
+function OrderDetailsLabel(
+  { id, saleStatus, statuses, date, sellerName, updateSale, testPrefix },
+) {
   return (
     <div>
       {/* Número do pedido */}
-      <h3>{`PEDIDO${id}`}</h3>
+      <h3 data-testid={ `${testPrefix}element-order-details-label-order-id` }>
+        {`PEDIDO${id}`}
+      </h3>
 
       {/* Nome do vendedor */}
       { sellerName && (
-        <p>{`P. Vend: ${sellerName}`}</p>
+        <p data-testid={ `${testPrefix}element-order-details-label-seller-name` }>
+          {`P. Vend: ${sellerName}`}
+        </p>
       )}
 
       {/* Data do pedido */}
-      <p>{date}</p>
+      <p data-testid={ `${testPrefix}element-order-details-label-order-date` }>
+        {date}
+      </p>
 
       {/* Status atual do pedido */}
-      <p>{saleStatus}</p>
+      <p data-testid={ `${testPrefix}element-order-details-label-delivery-status` }>
+        {saleStatus}
+      </p>
 
       {/* Renderização condicional dos botões que alteram o estado do pedido */}
       { sellerName ? (
         <button
+          data-testid={ `${testPrefix}button-delivery-check` }
           type="button"
           onClick={ () => updateSale({ id, status: statuses.delivered }) }
+          disabled={ saleStatus !== statuses.inTransit }
         >
           MARCAR COMO ENTREGUE
         </button>
       ) : (
         <>
-
           <button
+            data-testid={ `${testPrefix}button-preparing-check` }
             type="button"
             disabled={ saleStatus !== statuses.pending }
             onClick={ () => updateSale({ id, status: statuses.preparing }) }
@@ -38,6 +50,7 @@ function OrderDetailsLabel({ id, saleStatus, statuses, date, sellerName, updateS
           </button>
 
           <button
+            data-testid={ `${testPrefix}button-dispatch-check` }
             type="button"
             disabled={ saleStatus !== statuses.preparing }
             onClick={ () => updateSale({ id, status: statuses.inTransit }) }
@@ -63,6 +76,7 @@ OrderDetailsLabel.propTypes = {
   }).isRequired,
   date: PropTypes.string.isRequired,
   updateSale: PropTypes.func.isRequired,
+  testPrefix: PropTypes.string.isRequired,
 };
 
 OrderDetailsLabel.defaultProps = {
