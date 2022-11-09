@@ -1,6 +1,5 @@
-const formatDate = (date) => {
-  const dateOnly = date.split('T')[0];
-  return dateOnly.split('-').reverse().join('/');
-};
+import moment from 'moment';
+
+const formatDate = (date) => moment(date).locale('pt-br').format('DD/MM/YYYY');
 
 export default formatDate;
