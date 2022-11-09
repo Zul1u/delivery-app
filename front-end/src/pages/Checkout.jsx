@@ -39,6 +39,7 @@ export default function CheckoutPage() {
         data={ products }
         checkout
         removeItem={ removeItem }
+        testPrefix="customer_checkout__"
       />
       <FinishOrderForm userId={ userId } products={ productsObject } />
     </div>

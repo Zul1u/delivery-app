@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import replaceDot from '../helpers/replaceDot';
 import DELIVERY_API from '../redux/services/api.fetch';
 
-function List({ type, data, checkout, removeItem }) {
+function List({ type, data, checkout, removeItem, testPrefix }) {
   const [deleteUser] = DELIVERY_API.deleteUser();
   const [totalPrice, setTotalPrice] = useState(0);
 
@@ -93,46 +93,26 @@ function List({ type, data, checkout, removeItem }) {
             data.map((item, index) => (
               <tr key={ item.id } id={ item.id }>
                 <td
-                  data-testid={
-                    `customer_checkout__element-order-table-item-number-${index}`
-                  }
+                  data-testid={ `${testPrefix}element-order-table-item-number-${index}` }
                 >
                   {(index + 1).toString()}
                 </td>
-                <td
-                  data-testid={
-                    `customer_checkout__element-order-table-name-${index}`
-                  }
-                >
+                <td data-testid={ `${testPrefix}element-order-table-name-${index}` }>
                   {item.name}
                 </td>
-                <td
-                  data-testid={
-                    `customer_checkout__element-order-table-quantity-${index}`
-                  }
-                >
+                <td data-testid={ `${testPrefix}element-order-table-quantity-${index}` }>
                   {item.quantity}
                 </td>
                 <td
-                  data-testid={
-                    `customer_checkout__element-order-table-unit-price-${index}`
-                  }
+                  data-testid={ `${testPrefix}element-order-table-unit-price-${index}` }
                 >
                   {`R$ ${replaceDot((+item.price).toFixed(2))}`}
                 </td>
-                <td
-                  data-testid={
-                    `customer_checkout__element-order-table-sub-total-${index}`
-                  }
-                >
+                <td data-testid={ `${testPrefix}element-order-table-sub-total-${index}` }>
                   {`R$ ${replaceDot((+item.price * +item.quantity).toFixed(2))}`}
                 </td>
                 {checkout ? (
-                  <td
-                    data-testid={
-                      `customer_checkout__element-order-table-remove-${index}`
-                    }
-                  >
+                  <td data-testid={ `${testPrefix}element-order-table-remove-${index}` }>
                     {removeButton('Remover', removeItem)}
                   </td>
                 ) : null}
@@ -141,7 +121,7 @@ function List({ type, data, checkout, removeItem }) {
           }
         </tbody>
       </table>
-      <span data-testid="customer_checkout__element-order-total-price">
+      <span data-testid={ `${testPrefix}element-order-total-price` }>
         {`Valor total: ${replaceDot(totalPrice.toFixed(2))}`}
       </span>
     </div>
@@ -164,6 +144,7 @@ List.propTypes = {
   data: PropTypes.arrayOf(PropTypes.shape()).isRequired,
   checkout: PropTypes.bool.isRequired,
   removeItem: PropTypes.func.isRequired,
+  testPrefix: PropTypes.string.isRequired,
 };
 
 export default List;
