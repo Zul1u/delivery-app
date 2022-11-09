@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 function OrderDetailsLabel(
   { id, saleStatus, statuses, date, sellerName, updateSale, testPrefix },
 ) {
+  const [status, setStatus] = useState(saleStatus);
   return (
     <div>
       {/* Número do pedido */}
@@ -25,7 +26,7 @@ function OrderDetailsLabel(
 
       {/* Status atual do pedido */}
       <p data-testid={ `${testPrefix}element-order-details-label-delivery-status` }>
-        {saleStatus}
+        {status}
       </p>
 
       {/* Renderização condicional dos botões que alteram o estado do pedido */}
@@ -33,8 +34,11 @@ function OrderDetailsLabel(
         <button
           data-testid={ `${testPrefix}button-delivery-check` }
           type="button"
-          onClick={ () => updateSale({ id, status: statuses.delivered }) }
-          disabled={ saleStatus !== statuses.inTransit }
+          onClick={ () => {
+            updateSale({ id, status: statuses.delivered });
+            setStatus(statuses.delivered);
+          } }
+          disabled={ status !== statuses.inTransit }
         >
           MARCAR COMO ENTREGUE
         </button>
