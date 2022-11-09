@@ -20,7 +20,6 @@ function FinishOrderForm({ userId, products }) {
       setFormState({ ...formState, responsibleSeller: responsibles[0].id });
       setResponsibleSellersList(responsibles);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [users]);
 
   const handleChange = ({ target: { name, value } }) => {
