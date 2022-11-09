@@ -15,6 +15,6 @@ saleRouter.get('/:id', saleController.findOne);
 
 saleRouter.post('/', auth.any, validate.newSale, saleController.create);
 
-saleRouter.patch('/:id/:status', auth.seller, validate.saleStatus, saleController.updateStatus);
+saleRouter.patch('/:id/:status', auth.any, validate.saleStatus, saleController.updateStatus);
 
 module.exports = saleRouter;
