@@ -1,36 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { registerValidation } from '../helpers/validateInputs';
-import DELIVERY_API from '../redux/services/api.fetch';
-import StorageManager from '../utils/StorageManager';
+import React from 'react';
+import PropTypes from 'prop-types';
 
-export default function RegisterForm() {
-  const [formState, setFormState] = useState({ name: '', email: '', password: '' });
-  const [submitDisabled, setSubmitDisabled] = useState(true);
-  const [registerError, setRegisterError] = useState(false);
-  const [registerUser] = DELIVERY_API.createUser();
-
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    setSubmitDisabled(!registerValidation(formState));
-  }, [formState]);
-
-  const handleChange = ({ target: { name, value } }) => {
-    setFormState((state) => ({ ...state, [name]: value }));
-  };
-
-  const handleSubmit = async () => {
-    const response = await registerUser(formState);
-
-    if (response.data) {
-      StorageManager.saveUser(response.data);
-
-      return navigate('/customer/products');
-    }
-    setRegisterError(true);
-  };
-
+export default function RegisterForm({
+  handleSubmit, handleChange, formState, submitDisabled, registerError,
+}) {
   return (
     <form>
       <div>
@@ -93,3 +66,11 @@ export default function RegisterForm() {
     </form>
   );
 }
+
+RegisterForm.propTypes = {
+  handleSubmit: PropTypes.func.isRequired,
+  handleChange: PropTypes.func.isRequired,
+  formState: PropTypes.shape(PropTypes.string.isRequired).isRequired,
+  submitDisabled: PropTypes.bool.isRequired,
+  registerError: PropTypes.bool.isRequired,
+};
