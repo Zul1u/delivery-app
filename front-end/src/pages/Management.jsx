@@ -12,7 +12,7 @@ function Management() {
     state: 0, type: 'password', button: '○',
   });
   const [submitDisabled, setSubmitDisabled] = useState(true);
-  const [registerError, setRegisterError] = useState({ error: false, message: ''});
+  const [registerError, setRegisterError] = useState({ error: false, message: '' });
   const [createUser] = DELIVERY_API.createUser();
   const [deleteUser] = DELIVERY_API.deleteUser();
   const getUsers = DELIVERY_API.getAllUsers();
@@ -22,9 +22,9 @@ function Management() {
 
   useEffect(() => {
     if (getUsers.data) {
-      const usersTable = getUsers.data.filter((user) => user.role !== 'administrator')
+      const usersTable = getUsers.data.filter((user) => user.role !== 'administrator');
       setUsers(usersTable);
-      console.log(getUsers.data)
+      console.log(getUsers.data);
     }
   }, [getUsers]);
 
@@ -44,21 +44,20 @@ function Management() {
     case 'Vendedor':
       translatedRole = 'seller';
       break;
-  
+
     case 'Administrador':
       translatedRole = 'administrator';
       break;
 
-
     case 'Cliente':
       translatedRole = 'customer';
       break;
-  
+
     default:
       break;
     }
 
-    const response = await createUser({...formState, role: translatedRole});
+    const response = await createUser({ ...formState, role: translatedRole });
     if (response.error) {
       setRegisterError({ error: true, message: response.error.message });
       console.log(response.error);
@@ -66,15 +65,15 @@ function Management() {
 
     if (response.data) {
       const { user } = response.data;
-      setUsers([ ...users, user ])
+      setUsers([...users, user]);
     }
   };
 
   const seePassword = () => {
     if (passwordInput.type === 'password') {
-      setPasswordInput({ type: 'text', button: '×' })
+      setPasswordInput({ type: 'text', button: '×' });
     } else {
-      setPasswordInput({ type: 'password', button: '○' })
+      setPasswordInput({ type: 'password', button: '○' });
     }
   };
 
@@ -88,9 +87,9 @@ function Management() {
     <div>
       <Header />
       {registerError.error && (
-          <span data-testid="admin_manage__element-invalid-register">
-            {registerError.message}
-          </span>
+        <span data-testid="admin_manage__element-invalid-register">
+          {registerError.message}
+        </span>
       )}
       <form onSubmit={ handleSubmit }>
         <label htmlFor="name">
@@ -121,7 +120,7 @@ function Management() {
           Senha:
           <input
             data-testid="admin_manage__input-password"
-            type={passwordInput.type}
+            type={ passwordInput.type }
             id="password"
             name="password"
             onChange={ handleChange }
@@ -145,7 +144,7 @@ function Management() {
             value={ formState.role }
           >
             {roles.map((role) => (
-              <option key={role}>{role}</option>
+              <option key={ role }>{role}</option>
             ))}
           </select>
         </label>

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import replaceDot from '../helpers/replaceDot';
-import DELIVERY_API from '../redux/services/api.fetch';
 
 function List({ type, data, checkout, removeItem, testPrefix }) {
   const [totalPrice, setTotalPrice] = useState(0);
@@ -78,9 +77,10 @@ function List({ type, data, checkout, removeItem, testPrefix }) {
               >
                 {translateRole(user.role)}
               </td>
-              <td
-              >
-                {removeButton('Excluir', removeItem, {testPrefix, type: 'user', index})}
+              <td>
+                {removeButton('Excluir', removeItem, {
+                  testPrefix, type: 'user', index,
+                })}
               </td>
             </tr>
           ))
@@ -127,7 +127,9 @@ function List({ type, data, checkout, removeItem, testPrefix }) {
                 </td>
                 {checkout ? (
                   <td>
-                    {removeButton('Remover', removeItem, {testPrefix, type: 'order', index})}
+                    {removeButton('Remover', removeItem, {
+                      testPrefix, type: 'order', index,
+                    })}
                   </td>
                 ) : null}
               </tr>
