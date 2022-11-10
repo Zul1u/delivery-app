@@ -1,46 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
-import { loginValidation } from '../helpers/validateInputs';
-import DELIVERY_API from '../redux/services/api.fetch';
-import StorageManager from '../utils/StorageManager';
 
-export default function LoginForm() {
-  const [formState, setFormState] = useState({ email: '', password: '' });
-  const [submitDisabled, setSubmitDisabled] = useState(true);
-  const [loginError, setLoginError] = useState(false);
-  const [userLogin] = DELIVERY_API.login();
-
+export default function LoginForm({
+  handleSubmit, handleChange, formState, submitDisabled, loginError,
+}) {
   const navigate = useNavigate();
-
-  useEffect(() => {
-    setSubmitDisabled(!loginValidation(formState));
-  }, [formState]);
-
-  const handleChange = ({ target: { name, value } }) => {
-    setFormState((state) => ({ ...state, [name]: value }));
-  };
-
-  const selectRoute = ({ user }) => {
-    switch (user.role) {
-    case 'seller':
-      return navigate('/seller/orders');
-    case 'administrator':
-      return navigate('/admin/manage');
-    default:
-      return navigate('/customer/products');
-    }
-  };
-
-  const handleSubmit = async () => {
-    const response = await userLogin(formState);
-
-    if (response.data) {
-      StorageManager.saveUser(response.data);
-
-      return selectRoute(response.data);
-    }
-    setLoginError(true);
-  };
 
   return (
     <form>
@@ -95,3 +60,11 @@ export default function LoginForm() {
     </form>
   );
 }
+
+LoginForm.propTypes = {
+  handleSubmit: PropTypes.func.isRequired,
+  handleChange: PropTypes.func.isRequired,
+  formState: PropTypes.shape(PropTypes.string.isRequired).isRequired,
+  submitDisabled: PropTypes.bool.isRequired,
+  loginError: PropTypes.bool.isRequired,
+};
