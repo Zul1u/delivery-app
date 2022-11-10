@@ -6,8 +6,9 @@ import StorageManager from '../utils/StorageManager';
 
 function FinishOrderForm({ userId, products }) {
   const [formState, setFormState] = useState({
-    responsibleSeller: 0, sellerId: 0, deliveryAddress: '', deliveryNumber: '',
+    responsibleSeller: 0, deliveryAddress: '', deliveryNumber: '',
   });
+
   const [responsibleSellersList, setResponsibleSellersList] = useState([]);
   const { data: users, isLoading } = DELIVERY_API.getAllUsers();
   const [sendSale] = DELIVERY_API.createSale();
@@ -15,10 +16,10 @@ function FinishOrderForm({ userId, products }) {
   const navigate = useNavigate();
   useEffect(() => {
     if (!isLoading) {
-      const responsibles = users.filter((user) => user.role === 'seller');
+      const sellers = users.filter((user) => user.role === 'seller');
 
-      setFormState({ ...formState, responsibleSeller: responsibles[0].id });
-      setResponsibleSellersList(responsibles);
+      setFormState({ ...formState, responsibleSeller: sellers[0].id });
+      setResponsibleSellersList(sellers);
     }
   }, [users]);
 
@@ -43,7 +44,7 @@ function FinishOrderForm({ userId, products }) {
       StorageManager.eraseCart();
       return navigate(`/customer/orders/${response.data.id}`);
     }
-    console.error(response);
+    return console.error(response);
   };
 
   if (isLoading) {

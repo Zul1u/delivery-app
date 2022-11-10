@@ -40,11 +40,8 @@ function List({ type, data, checkout, removeItem, testPrefix }) {
     case 'seller':
       return 'P. Vendedora';
 
-    case 'customer':
-      return 'Cliente';
-
     default:
-      break;
+      return 'Cliente';
     }
   };
 
@@ -85,7 +82,7 @@ function List({ type, data, checkout, removeItem, testPrefix }) {
             <th>Quantidade</th>
             <th>Valor Unitário </th>
             <th>Sub-total</th>
-            {checkout ? (<th>Remover item</th>) : null}
+            {checkout && (<th>Remover item</th>)}
           </tr>
         </thead>
         <tbody>
@@ -111,11 +108,11 @@ function List({ type, data, checkout, removeItem, testPrefix }) {
                 <td data-testid={ `${testPrefix}element-order-table-sub-total-${index}` }>
                   {`R$ ${replaceDot((+item.price * +item.quantity).toFixed(2))}`}
                 </td>
-                {checkout ? (
+                {checkout && (
                   <td data-testid={ `${testPrefix}element-order-table-remove-${index}` }>
                     {removeButton('Remover', removeItem)}
                   </td>
-                ) : null}
+                )}
               </tr>
             ))
           }
@@ -128,14 +125,11 @@ function List({ type, data, checkout, removeItem, testPrefix }) {
   );
 
   switch (type) {
-  case 'user':
-    return userList;
-
   case 'product':
     return productList;
 
   default:
-    break;
+    return userList;
   }
 }
 
@@ -143,8 +137,12 @@ List.propTypes = {
   type: PropTypes.string.isRequired,
   data: PropTypes.arrayOf(PropTypes.shape()).isRequired,
   checkout: PropTypes.bool.isRequired,
-  removeItem: PropTypes.func.isRequired,
+  removeItem: PropTypes.func,
   testPrefix: PropTypes.string.isRequired,
+};
+
+List.defaultProps = {
+  removeItem: () => console.log('this is a function!'),
 };
 
 export default List;
