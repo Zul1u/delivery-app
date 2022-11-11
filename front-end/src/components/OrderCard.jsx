@@ -23,7 +23,7 @@ function OrderCard({
         </span>
 
         <span data-testid={ `${role}_orders__element-card-price-${id}` }>
-          { replaceDot(totalPrice)}
+          { replaceDot(totalPrice.toFixed(2))}
         </span>
 
         {
