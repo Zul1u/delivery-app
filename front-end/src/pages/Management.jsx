@@ -6,7 +6,7 @@ import DELIVERY_API from '../redux/services/api.fetch';
 
 function Management() {
   const [formState, setFormState] = useState({
-    name: '', email: '', password: '', role: 'Vendedor',
+    name: '', email: '', password: '', role: 'customer',
   });
   const [passwordInput, setPasswordInput] = useState({
     state: 0, type: 'password', button: '○',
@@ -18,7 +18,7 @@ function Management() {
   const getUsers = DELIVERY_API.getAllUsers();
   const [users, setUsers] = useState([]);
 
-  const roles = ['Vendedor', 'Cliente', 'Administrador'];
+  const roles = ['customer', 'seller', 'administrator'];
 
   useEffect(() => {
     if (getUsers.data) {
@@ -38,26 +38,8 @@ function Management() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    let translatedRole;
 
-    switch (formState.role) {
-    case 'Vendedor':
-      translatedRole = 'seller';
-      break;
-
-    case 'Administrador':
-      translatedRole = 'administrator';
-      break;
-
-    case 'Cliente':
-      translatedRole = 'customer';
-      break;
-
-    default:
-      break;
-    }
-
-    const response = await createUser({ ...formState, role: translatedRole });
+    const response = await createUser(formState);
     if (response.error) {
       setRegisterError({ error: true, message: response.error.message });
       console.log(response.error);
@@ -144,7 +126,7 @@ function Management() {
             value={ formState.role }
           >
             {roles.map((role) => (
-              <option key={ role }>{role}</option>
+              <option key={ role } value={ role }>{role}</option>
             ))}
           </select>
         </label>
