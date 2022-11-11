@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import replaceDot from '../helpers/replaceDot';
-import DELIVERY_API from '../redux/services/api.fetch';
 
 function List({ type, data, checkout, removeItem, testPrefix }) {
-  const [deleteUser] = DELIVERY_API.deleteUser();
   const [totalPrice, setTotalPrice] = useState(0);
 
   useEffect(() => {
@@ -14,19 +12,15 @@ function List({ type, data, checkout, removeItem, testPrefix }) {
     });
 
     setTotalPrice(total);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data]);
 
-  const removeUser = ({ target: { parentNode } }) => {
-    const row = parentNode;
-    deleteUser(row.parentNode.id);
-    row.parentNode.remove();
-  };
-
-  const removeButton = (name, onClick) => (
+  const removeButton = (name, onClick, options) => (
     <button
       type="button"
       onClick={ onClick }
+      data-testid={
+        `${options.testPrefix}element-${options.type}-table-remove-${options.index}`
+      }
     >
       { name }
     </button>
@@ -60,11 +54,31 @@ function List({ type, data, checkout, removeItem, testPrefix }) {
         {
           data.map((user, index) => (
             <tr key={ user.id } id={ user.id }>
-              <td>{index + 1}</td>
-              <td>{user.name}</td>
-              <td>{user.email}</td>
-              <td>{translateRole(user.role)}</td>
-              <td>{removeButton('Excluir', removeUser)}</td>
+              <td
+                data-testid={ `${testPrefix}element-user-table-item-number-${index}` }
+              >
+                {(index + 1).toString()}
+              </td>
+              <td
+                data-testid={ `${testPrefix}element-user-table-name-${index}` }
+              >
+                {user.name}
+              </td>
+              <td
+                data-testid={ `${testPrefix}element-user-table-email-${index}` }
+              >
+                {user.email}
+              </td>
+              <td
+                data-testid={ `${testPrefix}element-user-table-role-${index}` }
+              >
+                {translateRole(user.role)}
+              </td>
+              <td>
+                {removeButton('Excluir', removeItem, {
+                  testPrefix, type: 'user', index,
+                })}
+              </td>
             </tr>
           ))
         }
@@ -109,8 +123,10 @@ function List({ type, data, checkout, removeItem, testPrefix }) {
                   {`R$ ${replaceDot((+item.price * +item.quantity).toFixed(2))}`}
                 </td>
                 {checkout && (
-                  <td data-testid={ `${testPrefix}element-order-table-remove-${index}` }>
-                    {removeButton('Remover', removeItem)}
+                  <td>
+                    {removeButton('Remover', removeItem, {
+                      testPrefix, type: 'order', index,
+                    })}
                   </td>
                 )}
               </tr>

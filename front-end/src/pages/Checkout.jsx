@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Header from '../components/Header';
-import FinishOrderForm from '../components/FinishOrderForm';
+import DeliveryForm from '../components/DeliveryForm';
 import List from '../components/List';
 import StorageManager from '../utils/StorageManager';
 
@@ -41,7 +41,7 @@ export default function CheckoutPage() {
         removeItem={ removeItem }
         testPrefix="customer_checkout__"
       />
-      <FinishOrderForm userId={ userId } products={ productsObject } />
+      <DeliveryForm userId={ userId } products={ productsObject } />
     </div>
   );
 }
