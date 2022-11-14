@@ -19,6 +19,12 @@
     "lint:styles": "stylelint **/*.css --config .stylelintrc.json --ignore-disables --allow-empty-input"
   },
   "dependencies": {
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
+    "@fontsource/roboto": "^4.5.8",
+    "@mui/icons-material": "^5.10.9",
+    "@mui/material": "^5.10.13",
+    "@mui/styled-engine-sc": "^5.10.6",
     "@reduxjs/toolkit": "^1.8.6",
     "@testing-library/jest-dom": "5.16.2",
     "@testing-library/react": "12.1.4",
@@ -31,6 +37,7 @@
     "react-router-dom": "^6.4.3",
     "react-scripts": "5.0.0",
     "serve": "13.0.2",
+    "styled-components": "^5.3.6",
     "web-vitals": "2.1.4"
   },
   "devDependencies": {
