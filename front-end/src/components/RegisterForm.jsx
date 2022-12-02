@@ -8,6 +8,7 @@ export default function RegisterForm({
     <div className="form-Container">
       <form>
         <div className="form-title"><h1>Gaguin Delivery</h1></div>
+        <div className="form-sub-title"><p>Criar sua Conta no Gaguin Delivery</p></div>
         <div className="form-inputs">
           <label htmlFor="name">
             <input
@@ -45,12 +46,15 @@ export default function RegisterForm({
             />
             <span>Senha</span>
           </label>
+          {registerError && (
+            <span
+              data-testid="common_register__element-invalid_register"
+              className="validation-error"
+            >
+              Ops... Email invalido :(
+            </span>
+          )}
         </div>
-        {registerError && (
-          <span data-testid="common_register__element-invalid_register">
-            Ops... Email invalido :(
-          </span>
-        )}
         <div className="form-button">
           <button
             className="submit-button"

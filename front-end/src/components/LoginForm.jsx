@@ -11,6 +11,7 @@ export default function LoginForm({
     <div className="form-Container">
       <form>
         <div className="form-title"><h1>Gaguin Delivery</h1></div>
+        <div className="form-sub-title"><p>Fazer login</p></div>
         <div className="form-inputs">
           <label htmlFor="email">
             <input
@@ -36,10 +37,15 @@ export default function LoginForm({
             />
             <span>Senha</span>
           </label>
+          {loginError && (
+            <span
+              data-testid="common_login__element-invalid-email"
+              className="validation-error"
+            >
+              e-mail e/ou senha incorretos.
+            </span>
+          )}
         </div>
-        {loginError && (
-          <span data-testid="common_login__element-invalid-email">Login invalido</span>
-        )}
         <div className="form-button">
           <button
             type="button"

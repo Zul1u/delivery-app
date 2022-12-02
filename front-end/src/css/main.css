@@ -27,6 +27,17 @@ body {
 .form-Container .form-title {
   text-align: center;
 }
+.form-Container .form-title h1 {
+  margin-bottom: 2.5rem;
+}
+.form-Container .form-sub-title {
+  text-align: center;
+}
+.form-Container .form-sub-title p {
+  font-size: 1.8rem;
+  font-weight: 550;
+  margin-bottom: 0;
+}
 
 .form-inputs {
   align-items: center;
@@ -64,6 +75,11 @@ body {
 }
 .form-inputs input:focus ~ span {
   color: #023371;
+}
+.form-inputs .validation-error {
+  color: #d00000;
+  font-weight: 600;
+  text-align: center;
 }
 
 .form-button {

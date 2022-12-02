@@ -12,6 +12,19 @@
 
   .form-title {
     text-align: center;
+    h1 {
+      margin-bottom: 2.5rem;
+    }
+  }
+
+  .form-sub-title {
+    text-align: center;
+
+    p {
+      font-size: 1.8rem;
+      font-weight: 550;
+      margin-bottom: 0;
+    }
   }
 }
 
@@ -56,6 +69,12 @@
         }
       }
     }
+  }
+
+  .validation-error {
+    color: $error-color;
+    font-weight: 600;
+    text-align: center;
   }
 }
 
