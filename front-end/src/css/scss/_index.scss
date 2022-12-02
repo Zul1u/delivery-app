@@ -1,0 +1,19 @@
+$base-color: lighten(#caf0f8, 8);
+$text-color: #1b1e22;
+$text-color-02: #e9ecef;
+$accent-color: #023e8a;
+
+* {
+  color: $text-color;
+}
+
+body {
+  background-color: $base-color;
+  font-size: 1.6rem;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  font-size: 62.5%;
+}

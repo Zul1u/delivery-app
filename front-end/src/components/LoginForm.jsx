@@ -8,56 +8,58 @@ export default function LoginForm({
   const navigate = useNavigate();
 
   return (
-    <form>
-      <div>
-        <label htmlFor="email">
-          Email:
-          <input
-            data-testid="common_login__input-email"
-            type="email"
-            id="email"
-            name="email"
-            onChange={ handleChange }
-            value={ formState.email }
-            placeholder="seu-email@email.com"
-          />
-        </label>
-      </div>
-      <div>
-        <label htmlFor="password">
-          Senha:
-          <input
-            data-testid="common_login__input-password"
-            type="password"
-            id="password"
-            name="password"
-            onChange={ handleChange }
-            value={ formState.password }
-            placeholder="******"
-          />
-        </label>
-      </div>
-      {loginError && (
-        <span data-testid="common_login__element-invalid-email">Login invalido</span>
-      )}
-      <div>
-        <button
-          type="button"
-          data-testid="common_login__button-login"
-          disabled={ submitDisabled }
-          onClick={ handleSubmit }
-        >
-          LOGIN
-        </button>
-        <button
-          type="button"
-          data-testid="common_login__button-register"
-          onClick={ () => navigate('/register') }
-        >
-          Ainda não tenho conta
-        </button>
-      </div>
-    </form>
+    <div className="form-Container">
+      <form>
+        <div className="form-title"><h1>Gaguin Delivery</h1></div>
+        <div className="form-inputs">
+          <label htmlFor="email">
+            <input
+              data-testid="common_login__input-email"
+              type="email"
+              id="email"
+              name="email"
+              onChange={ handleChange }
+              value={ formState.email }
+              placeholder="seu-email@email.com"
+            />
+            <span>E-mail</span>
+          </label>
+          <label htmlFor="password">
+            <input
+              data-testid="common_login__input-password"
+              type="password"
+              id="password"
+              name="password"
+              onChange={ handleChange }
+              value={ formState.password }
+              placeholder="******"
+            />
+            <span>Senha</span>
+          </label>
+        </div>
+        {loginError && (
+          <span data-testid="common_login__element-invalid-email">Login invalido</span>
+        )}
+        <div className="form-button">
+          <button
+            type="button"
+            data-testid="common_login__button-login"
+            className="submit-button"
+            disabled={ submitDisabled }
+            onClick={ handleSubmit }
+          >
+            LOGIN
+          </button>
+          <button
+            type="button"
+            data-testid="common_login__button-register"
+            onClick={ () => navigate('/register') }
+          >
+            Ainda não tenho conta
+          </button>
+        </div>
+      </form>
+    </div>
   );
 }
 

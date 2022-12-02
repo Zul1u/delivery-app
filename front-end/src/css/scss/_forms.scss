@@ -1,0 +1,100 @@
+.form-Container {
+  display: flex;
+  height: 100vh;
+
+  form {
+    border: 1px solid transparentize($text-color, 0.6);
+    border-radius: 8px;
+    height: 480px;
+    margin: auto;
+    width: 400px;
+  }
+
+  .form-title {
+    text-align: center;
+  }
+}
+
+.form-inputs {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  padding: 3rem 0 5rem;
+
+  label {
+    box-sizing: border-box;
+    display: block;
+    font-size: 1.6rem;
+    font-weight: 500;
+    margin: auto;
+    padding: 1.5rem 0.6rem;
+    position: relative;
+    width: 90%;
+
+    span {
+      background-color: $base-color;
+      left: 10px;
+      position: absolute;
+      top: 0;
+    }
+  }
+
+  input {
+    background-color: darken($base-color, 6);
+    border: 1px solid;
+    border-radius: 5px;
+    font-size: 1.6rem;
+    padding: 0.7rem;
+    outline: none;
+    width: 96%;
+
+    &:focus {
+      padding: 0.8rem;
+      ~ {
+        span {
+          color: darken($accent-color, 5);
+        }
+      }
+    }
+  }
+}
+
+.form-button {
+  display: flex;
+  flex-direction: column;
+  padding: 0.6rem 0;
+  width: 100%;
+
+  button {
+    border: 3px solid transparentize($accent-color, 0.1);
+    border-radius: 3px;
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin: auto;
+    margin-bottom: 5px;
+    padding: 1.2rem;
+    width: 90%;
+
+    &:hover {
+      cursor: pointer;
+      border-color: lighten($accent-color, 5);
+      color: darken($text-color, 10);
+    }
+  }
+
+  .submit-button {
+    border: 0;
+    background-color: transparentize($accent-color, 0.05);
+    color: $text-color-02;
+
+    &:disabled {
+      background-color: transparentize($accent-color, 0.25);
+      color: $text-color-02;
+    }
+
+    &:enabled:hover {
+      background-color: lighten($accent-color, 10);
+      color: $text-color-02;
+    }
+  }
+}

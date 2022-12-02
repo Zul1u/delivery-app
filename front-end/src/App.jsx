@@ -8,6 +8,7 @@ import Products from './pages/Products';
 import RegisterPage from './pages/Register';
 import CheckoutPage from './pages/Checkout';
 import Management from './pages/Management';
+import './css/main.css';
 
 function App() {
   return (
