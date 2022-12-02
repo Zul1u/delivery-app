@@ -17,7 +17,6 @@ body {
   display: flex;
   height: 100vh;
 }
-
 .form-Container form {
   border: 1px solid rgba(27, 30, 34, 0.4);
   border-radius: 8px;
@@ -25,7 +24,6 @@ body {
   margin: auto;
   width: 400px;
 }
-
 .form-Container .form-title {
   text-align: center;
 }
@@ -36,7 +34,6 @@ body {
   flex-direction: column;
   padding: 3rem 0 5rem;
 }
-
 .form-inputs label {
   box-sizing: border-box;
   display: block;
@@ -47,28 +44,24 @@ body {
   position: relative;
   width: 90%;
 }
-
 .form-inputs label span {
   background-color: #eefafd;
   left: 10px;
   position: absolute;
   top: 0;
 }
-
 .form-inputs input {
   background-color: #d3f3f9;
   border: 1px solid;
   border-radius: 5px;
   font-size: 1.6rem;
-  outline: none;
   padding: 0.7rem;
+  outline: none;
   width: 96%;
 }
-
 .form-inputs input:focus {
   padding: 0.8rem;
 }
-
 .form-inputs input:focus ~ span {
   color: #023371;
 }
@@ -79,7 +72,6 @@ body {
   padding: 0.6rem 0;
   width: 100%;
 }
-
 .form-button button {
   border: 3px solid rgba(2, 62, 138, 0.9);
   border-radius: 3px;
@@ -90,25 +82,29 @@ body {
   padding: 1.2rem;
   width: 90%;
 }
-
 .form-button button:hover {
+  cursor: pointer;
   border-color: #0249a3;
   color: #040506;
-  cursor: pointer;
 }
-
 .form-button .submit-button {
-  background-color: rgba(2, 62, 138, 0.95);
   border: 0;
+  background-color: rgba(2, 62, 138, 0.95);
   color: #e9ecef;
 }
-
 .form-button .submit-button:disabled {
   background-color: rgba(2, 62, 138, 0.75);
   color: #e9ecef;
 }
-
 .form-button .submit-button:enabled:hover {
   background-color: #0355bc;
   color: #e9ecef;
+}
+
+@media (max-width: 600px) {
+  .form-Container form {
+    border: 0;
+    min-height: 80%;
+    min-width: 80%;
+  }
 }/*# sourceMappingURL=main.css.map */
