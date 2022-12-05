@@ -7,3 +7,88 @@
     }
   }
 }
+
+@media (max-width: 750px) {
+  .header-container {
+    justify-content: space-evenly;
+    .name-user {
+      text-align: center;
+    }
+
+    .header-button:nth-child(2) {
+      display: none;
+    }
+
+    .header-menu-buttons {
+      background: linear-gradient(to top, $base-color-02 20%, $base-color 100%);
+      border-bottom-right-radius: 10px;
+      display: flex;
+      flex-direction: column;
+      height: initial;
+      left: 0;
+      position: absolute;
+      top: 7vh;
+      width: 20rem;
+
+      button {
+        height: 5vh;
+        width: 100%;
+      }
+    }
+  }
+
+  .header-menu {
+    display: block;
+    padding: 0 5px;
+
+    .label-menu {
+      cursor: pointer;
+      display: block;
+      height: 22px;
+      position: relative;
+      width: 30px;
+
+      #checkbox-header {
+        opacity: 0;
+        position: absolute;
+      }
+
+      span {
+        position: absolute;
+        display: block;
+        height: 5px;
+        width: 100%;
+        border-radius: 30px;
+        background: $text-color;
+        margin-bottom: 3px;
+        transition: 0.25s ease-in-out;
+
+        &:nth-child(2) {
+          top: 0px;
+        }
+        &:nth-child(3) {
+          top: 8px;
+        }
+        &:nth-child(4) {
+          top: 16px;
+        }
+      }
+    }
+
+    #checkbox-header:checked {
+      ~ {
+        span:nth-child(2) {
+          top: 8px;
+          transform: rotate(-45deg);
+        }
+        span:nth-child(3) {
+          opacity: 0;
+        }
+        span:nth-child(4) {
+          top: 8px;
+          transform: rotate(45deg);
+        }
+      }
+    }
+  }
+}

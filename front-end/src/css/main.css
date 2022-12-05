@@ -1,12 +1,12 @@
 * {
   color: #1b1e22;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-  background-color: #eefafd;
+  background-color: #fffce6;
   font-size: 1.6rem;
-  margin: 0;
-  padding: 0;
 }
 
 :root {
@@ -56,13 +56,13 @@ body {
   width: 90%;
 }
 .form-inputs label span {
-  background-color: #eefafd;
+  background-color: #fffce6;
   left: 10px;
   position: absolute;
   top: 0;
 }
 .form-inputs input {
-  background-color: #d3f3f9;
+  background-color: #fff8c7;
   border: 1px solid;
   border-radius: 5px;
   font-size: 1.6rem;
@@ -74,7 +74,7 @@ body {
   padding: 0.8rem;
 }
 .form-inputs input:focus ~ span {
-  color: #023371;
+  color: #e69200;
 }
 .form-inputs .validation-error {
   color: #d00000;
@@ -89,7 +89,7 @@ body {
   width: 100%;
 }
 .form-button button {
-  border: 3px solid rgba(2, 62, 138, 0.9);
+  border: 3px solid rgba(255, 162, 0, 0.9);
   border-radius: 3px;
   font-size: 1.8rem;
   font-weight: 600;
@@ -100,21 +100,71 @@ body {
 }
 .form-button button:hover {
   cursor: pointer;
-  border-color: #0249a3;
+  border-color: #ffab1a;
   color: #040506;
 }
 .form-button .submit-button {
   border: 0;
-  background-color: rgba(2, 62, 138, 0.95);
-  color: #e9ecef;
+  background-color: rgba(255, 162, 0, 0.95);
+  color: #f8f9fa;
 }
 .form-button .submit-button:disabled {
-  background-color: rgba(2, 62, 138, 0.75);
-  color: #e9ecef;
+  background-color: rgba(255, 162, 0, 0.75);
+  color: #f8f9fa;
 }
 .form-button .submit-button:enabled:hover {
-  background-color: #0355bc;
-  color: #e9ecef;
+  background-color: #ffb533;
+  color: #f8f9fa;
+}
+
+.header {
+  height: 6vh;
+  padding-bottom: 2rem;
+  width: 100vw;
+}
+.header .header-font * {
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+.header .header-container {
+  align-items: center;
+  background: linear-gradient(to bottom, #ffc300 30%, #fffce6 100%);
+  display: flex;
+  height: 6vh;
+  justify-content: space-between;
+  padding: 0.5rem 0.3rem;
+}
+.header button {
+  background-color: transparent;
+  border: 0;
+}
+.header .header-button {
+  display: flex;
+  justify-content: space-around;
+  height: 100%;
+  width: 30%;
+}
+.header .header-button button {
+  border-radius: 5px;
+  height: 100%;
+  width: 45%;
+}
+.header .header-button button:hover {
+  cursor: pointer;
+  background: linear-gradient(-80deg, #fffce6 30%, #ffc300 100%);
+}
+.header .bnt-logout {
+  width: 20%;
+}
+.header .bnt-logout button {
+  width: 80%;
+}
+.header .bnt-logout button:hover {
+  background: linear-gradient(80deg, #fffce6 15%, #ffc300 100%);
+}
+
+.header-menu {
+  display: none;
 }
 
 @media (max-width: 600px) {
@@ -122,5 +172,76 @@ body {
     border: 0;
     min-height: 80%;
     min-width: 80%;
+  }
+}
+@media (max-width: 750px) {
+  .header-container {
+    justify-content: space-evenly;
+  }
+  .header-container .name-user {
+    text-align: center;
+  }
+  .header-container .header-button:nth-child(2) {
+    display: none;
+  }
+  .header-container .header-menu-buttons {
+    background: linear-gradient(to top, #ffc300 20%, #fffce6 100%);
+    border-bottom-right-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    height: initial;
+    left: 0;
+    position: absolute;
+    top: 7vh;
+    width: 20rem;
+  }
+  .header-container .header-menu-buttons button {
+    height: 5vh;
+    width: 100%;
+  }
+  .header-menu {
+    display: block;
+    padding: 0 5px;
+  }
+  .header-menu .label-menu {
+    cursor: pointer;
+    display: block;
+    height: 22px;
+    position: relative;
+    width: 30px;
+  }
+  .header-menu .label-menu #checkbox-header {
+    opacity: 0;
+    position: absolute;
+  }
+  .header-menu .label-menu span {
+    position: absolute;
+    display: block;
+    height: 5px;
+    width: 100%;
+    border-radius: 30px;
+    background: #1b1e22;
+    margin-bottom: 3px;
+    transition: 0.25s ease-in-out;
+  }
+  .header-menu .label-menu span:nth-child(2) {
+    top: 0px;
+  }
+  .header-menu .label-menu span:nth-child(3) {
+    top: 8px;
+  }
+  .header-menu .label-menu span:nth-child(4) {
+    top: 16px;
+  }
+  .header-menu #checkbox-header:checked ~ span:nth-child(2) {
+    top: 8px;
+    transform: rotate(-45deg);
+  }
+  .header-menu #checkbox-header:checked ~ span:nth-child(3) {
+    opacity: 0;
+  }
+  .header-menu #checkbox-header:checked ~ span:nth-child(4) {
+    top: 8px;
+    transform: rotate(45deg);
   }
 }/*# sourceMappingURL=main.css.map */

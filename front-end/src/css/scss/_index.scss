@@ -1,18 +1,19 @@
-$base-color: lighten(#caf0f8, 8);
+$base-color: lighten(#ffdd00, 45);
+$base-color-02: #ffc300;
 $text-color: #1b1e22;
-$text-color-02: #e9ecef;
-$accent-color: #023e8a;
+$text-color-02: #f8f9fa;
+$accent-color: #ffa200;
 $error-color: #d00000;
 
 * {
   color: $text-color;
+  margin: 0;
+  padding: 0;
 }
 
 body {
   background-color: $base-color;
   font-size: 1.6rem;
-  margin: 0;
-  padding: 0;
 }
 
 :root {
