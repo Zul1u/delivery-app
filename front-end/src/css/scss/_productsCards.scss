@@ -1,0 +1,90 @@
+.products-cards-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 5vh;
+}
+
+.product-card {
+  display: flex;
+  justify-content: center;
+  margin: 0 5px;
+  padding-bottom: 1rem;
+  width: 30%;
+
+  img {
+    height: 15rem;
+  }
+
+  .card {
+    align-items: center;
+    background: $card-bg-color;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+  }
+
+  span {
+    line-height: 2rem;
+  }
+}
+
+.qtl-product-container {
+  margin-top: 5px;
+  text-align: center;
+
+  button {
+    border: 0;
+    font-weight: 600;
+    padding: 0.8rem 1.5rem;
+  }
+
+  .bnt-l {
+    background: $card-bnt-color;
+    color: $text-color-02;
+    border-radius: 5px 0 0 5px;
+  }
+
+  .bnt-r {
+    background: $card-bnt-color;
+    color: $text-color-02;
+    border-radius: 0 5px 5px 0;
+  }
+
+  input {
+    border: 0;
+    background-color: $base-color;
+    font-size: 1.6rem;
+    font-weight: 600;
+    padding: 0.6rem;
+    text-align: center;
+    width: 65%;
+
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      appearance: none;
+      margin: 0;
+    }
+  }
+}
+
+.button-cart {
+  &:disabled {
+    display: none;
+  }
+
+  &:enabled {
+    background: lighten($accent-color, 4);
+    bottom: 0;
+    border: 0;
+    cursor: pointer;
+    display: block;
+    font-size: 2rem;
+    font-weight: 600;
+    position: fixed;
+    width: 100%;
+    height: 5vh;
+  }
+}

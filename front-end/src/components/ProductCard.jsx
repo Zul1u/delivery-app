@@ -7,59 +7,61 @@ function ProductCard({
   handleChange,
 }) {
   return (
-    <div>
-      {/* Product price */}
-      <span data-testid={ `customer_products__element-card-price-${id}` }>
-        { `Valor: R$ ${replaceDot(price)}` }
-      </span>
+    <div className="product-card">
+      <div className="card">
+        {/* Product image */}
+        <a href={ urlImage }>
+          <img
+            data-testid={ `customer_products__img-card-bg-image-${id}` }
+            src={ urlImage }
+            alt=""
+          />
+        </a>
 
-      {/* Product image */}
-      <a href={ urlImage }>
-        <img
-          data-testid={ `customer_products__img-card-bg-image-${id}` }
-          src={ urlImage }
-          alt=""
-          width="150px"
-        />
+        {/* Product name */}
+        <span data-testid={ `customer_products__element-card-title-${id}` }>
+          { name }
+        </span>
 
-      </a>
+        {/* Product price */}
+        <span data-testid={ `customer_products__element-card-price-${id}` }>
+          { `Valor: R$ ${replaceDot(price)}` }
+        </span>
 
-      {/* Product name */}
-      <span data-testid={ `customer_products__element-card-title-${id}` }>
-        { name }
-      </span>
+        <div className="qtl-product-container">
+          {/* Decrease item quantity */}
+          <button
+            className="bnt-l"
+            data-testid={ `customer_products__button-card-rm-item-${id}` }
+            type="button"
+            name="decreaseQty"
+            onClick={ decreaseQtyFunc }
+          >
+            -
+          </button>
 
-      <div>
-        {/* Decrease item quantity */}
-        <button
-          data-testid={ `customer_products__button-card-rm-item-${id}` }
-          type="button"
-          name="decreaseQty"
-          onClick={ decreaseQtyFunc }
-        >
-          -
-        </button>
+          {/* Item quantity */ }
+          <input
+            className="aaa"
+            data-testid={ `customer_products__input-card-quantity-${id}` }
+            type="number"
+            name="qty"
+            id="qty"
+            value={ qtyInput }
+            onChange={ handleChange }
+          />
 
-        {/* Item quantity */ }
-        <input
-          data-testid={ `customer_products__input-card-quantity-${id}` }
-          type="number"
-          name="qty"
-          id="qty"
-          value={ qtyInput }
-          onChange={ handleChange }
-        />
-
-        {/* Increase item quantity */}
-        <button
-        // customer_products__button-card-add-item-<id>
-          data-testid={ `customer_products__button-card-add-item-${id}` }
-          type="button"
-          name="increaseQty"
-          onClick={ increaseQtyFunc }
-        >
-          +
-        </button>
+          {/* Increase item quantity */}
+          <button
+            className="bnt-r"
+            data-testid={ `customer_products__button-card-add-item-${id}` }
+            type="button"
+            name="increaseQty"
+            onClick={ increaseQtyFunc }
+          >
+            +
+          </button>
+        </div>
       </div>
     </div>
   );

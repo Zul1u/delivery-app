@@ -1,3 +1,4 @@
+// FORM LOGIN/REGISTER
 @media (max-width: 600px) {
   .form-Container {
     form {
@@ -8,6 +9,7 @@
   }
 }
 
+// HEADER
 @media (max-width: 750px) {
   .header-container {
     justify-content: space-evenly;
@@ -90,5 +92,18 @@
         }
       }
     }
+  }
+}
+
+// PRODUCT CARD
+@media (max-width: 805px) {
+  .product-card {
+    width: 40%;
+  }
+}
+
+@media (max-width: 605px) {
+  .product-card {
+    width: 100%;
   }
 }

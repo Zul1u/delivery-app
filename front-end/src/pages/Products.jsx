@@ -113,26 +113,29 @@ function Products() {
   };
 
   return (
-    <div>
+    <>
       <Header />
-      {!products.isLoading && productList.map((product, i) => (
-        <ProductCard
-          key={ i }
-          id={ product.id }
-          name={ product.name }
-          price={ replaceDot(product.price) }
-          urlImage={ product.image }
-          qtyInput={ product.quantity }
-          increaseQtyFunc={ () => (
-            handleIncreaseButton(product.id)
-          ) }
-          decreaseQtyFunc={ () => (
-            handleDecreaseButton(product.id)
-          ) }
-          handleChange={ (event) => handleInputChange(event, product.id) }
-        />
-      ))}
+      <section className="products-cards-container">
+        {!products.isLoading && productList.map((product, i) => (
+          <ProductCard
+            key={ i }
+            id={ product.id }
+            name={ product.name }
+            price={ replaceDot(product.price) }
+            urlImage={ product.image }
+            qtyInput={ product.quantity }
+            increaseQtyFunc={ () => (
+              handleIncreaseButton(product.id)
+            ) }
+            decreaseQtyFunc={ () => (
+              handleDecreaseButton(product.id)
+            ) }
+            handleChange={ (event) => handleInputChange(event, product.id) }
+          />
+        ))}
+      </section>
       <button
+        className="button-cart"
         type="button"
         data-testid="customer_products__button-cart"
         onClick={ () => navigate('/customer/checkout') }
@@ -144,7 +147,7 @@ function Products() {
           { `Ver Carrinho R$ ${totalPrice}` }
         </span>
       </button>
-    </div>
+    </>
   );
 }
 
