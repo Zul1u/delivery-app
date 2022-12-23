@@ -265,6 +265,8 @@ body {
     display: none;
   }
   .header-container .header-menu-buttons {
+    -webkit-animation: fromTop 0.5s ease-in-out;
+            animation: fromTop 0.5s ease-in-out;
     background: linear-gradient(to top, #ffc300 20%, #fffce6 100%);
     border-bottom-right-radius: 10px;
     display: flex;
@@ -323,6 +325,26 @@ body {
   .header-menu #checkbox-header:checked ~ span:nth-child(4) {
     top: 8px;
     transform: rotate(45deg);
+  }
+  @-webkit-keyframes fromTop {
+    0% {
+      transform: translateX(-50px);
+      opacity: 0;
+    }
+    100% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  @keyframes fromTop {
+    0% {
+      transform: translateX(-50px);
+      opacity: 0;
+    }
+    100% {
+      transform: translateX(0);
+      opacity: 1;
+    }
   }
 }
 @media (max-width: 805px) {
