@@ -51,29 +51,30 @@ function DeliveryForm({ userId, products }) {
   }
 
   return (
-    <form>
-      <div>
+    <form className="delivery-form-container">
+      <div className="delivery-form-div">
         <label htmlFor="responsibleSeller">
           P. Vendedora Responsável
           <select
             data-testid="customer_checkout__select-seller"
             id="responsibleSeller"
+            className="responsible-seller"
             name="responsibleSeller"
             onChange={ handleChange }
             value={ formState.responsibleSeller }
           >
-            { responsibleSellersList.map((seller) => (
+            {responsibleSellersList.map((seller) => (
               <option
                 key={ seller.email }
                 value={ seller.id }
               >
-                { seller.name }
+                {seller.name}
               </option>
             ))}
           </select>
         </label>
       </div>
-      <div>
+      <div className="delivery-form-div">
         <label htmlFor="deliveryAddress">
           Endereço:
           <input
@@ -87,7 +88,7 @@ function DeliveryForm({ userId, products }) {
           />
         </label>
       </div>
-      <div>
+      <div className="delivery-form-div">
         <label htmlFor="deliveryNumber">
           Número:
           <input
@@ -101,13 +102,15 @@ function DeliveryForm({ userId, products }) {
           />
         </label>
       </div>
-      <button
-        type="button"
-        data-testid="customer_checkout__button-submit-order"
-        onClick={ finishOrder }
-      >
-        Finalizar Pedido
-      </button>
+      <div className="bnt-submit-form">
+        <button
+          type="button"
+          data-testid="customer_checkout__button-submit-order"
+          onClick={ finishOrder }
+        >
+          Finalizar Pedido
+        </button>
+      </div>
     </form>
   );
 }

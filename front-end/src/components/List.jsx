@@ -17,6 +17,7 @@ function List({ type, data, checkout, removeItem, testPrefix }) {
   const removeButton = (name, onClick, options) => (
     <button
       type="button"
+      className="remove-button"
       onClick={ onClick }
       data-testid={
         `${options.testPrefix}element-${options.type}-table-remove-${options.index}`
@@ -87,9 +88,9 @@ function List({ type, data, checkout, removeItem, testPrefix }) {
   );
 
   const productList = (
-    <div>
-      <table>
-        <thead>
+    <div className="product-table-container">
+      <table className="product-table">
+        <thead className="header-table">
           <tr>
             <th>Item</th>
             <th>Descrição</th>
@@ -99,7 +100,7 @@ function List({ type, data, checkout, removeItem, testPrefix }) {
             {checkout && (<th>Remover item</th>)}
           </tr>
         </thead>
-        <tbody>
+        <tbody className="body-table">
           {
             data.map((item, index) => (
               <tr key={ item.id } id={ item.id }>
@@ -124,7 +125,7 @@ function List({ type, data, checkout, removeItem, testPrefix }) {
                 </td>
                 {checkout && (
                   <td>
-                    {removeButton('Remover', removeItem, {
+                    {removeButton('X', removeItem, {
                       testPrefix, type: 'order', index,
                     })}
                   </td>
@@ -134,7 +135,10 @@ function List({ type, data, checkout, removeItem, testPrefix }) {
           }
         </tbody>
       </table>
-      <span data-testid={ `${testPrefix}element-order-total-price` }>
+      <span
+        data-testid={ `${testPrefix}element-order-total-price` }
+        className="total-price"
+      >
         {`Valor total: ${replaceDot(totalPrice.toFixed(2))}`}
       </span>
     </div>

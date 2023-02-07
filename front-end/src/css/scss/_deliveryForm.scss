@@ -1,0 +1,49 @@
+.delivery-form-container {
+  margin: auto;
+  width: 80%;
+}
+
+.delivery-form-div {
+  padding: 0.6rem;
+
+  label {
+    font-size: 1.7rem;
+    margin-right: 10px;
+    padding: 0.5rem;
+  }
+
+  input {
+    border: 0;
+    margin-left: 5px;
+    font-size: 1.7rem;
+    padding: 0.2rem;
+    width: 80%;
+  }
+}
+
+.responsible-seller {
+  border: 0;
+  margin-left: 5px;
+  font-size: 1.7rem;
+  width: 20%;
+}
+
+.bnt-submit-form {
+  margin-top: 10px;
+  text-align: center;
+
+  button {
+    background: $accent-color;
+    border: 0;
+    font-size: 1.7rem;
+    font-weight: 600;
+    opacity: 0.8;
+    padding: 0.8rem;
+    width: 50%;
+
+    &:hover {
+      cursor: pointer;
+      opacity: 1;
+    }
+  }
+}

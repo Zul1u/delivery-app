@@ -247,6 +247,107 @@ body {
   height: 5vh;
 }
 
+.product-table-container {
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 3rem 0;
+}
+
+.product-table {
+  border-collapse: collapse;
+  width: 80%;
+}
+
+.header-table th {
+  background: linear-gradient(to bottom, #ffc300 30%, #fffce6 100%);
+  padding: 0.5rem;
+}
+.header-table tr {
+  font-size: 1.7rem;
+}
+
+.body-table {
+  text-align: center;
+}
+.body-table td {
+  background-color: #fff9d1;
+  font-size: 1.6rem;
+  padding: 0.7rem;
+}
+
+.total-price {
+  background: linear-gradient(to top, #ffc300 30%, #fffce6 100%);
+  font-size: 1.7rem;
+  font-weight: 600;
+  padding: 0.5rem;
+  text-align: center;
+  width: 80%;
+}
+
+.remove-button {
+  background: #e85d04;
+  border: 0;
+  color: #f8f9fa;
+  font-size: 1.5rem;
+  font-weight: 600;
+  padding: 0.5rem;
+  opacity: 0.8;
+  width: 25px;
+}
+.remove-button:hover {
+  cursor: pointer;
+  opacity: 1;
+}
+
+.delivery-form-container {
+  margin: auto;
+  width: 80%;
+}
+
+.delivery-form-div {
+  padding: 0.6rem;
+}
+.delivery-form-div label {
+  font-size: 1.7rem;
+  margin-right: 10px;
+  padding: 0.5rem;
+}
+.delivery-form-div input {
+  border: 0;
+  margin-left: 5px;
+  font-size: 1.7rem;
+  padding: 0.2rem;
+  width: 80%;
+}
+
+.responsible-seller {
+  border: 0;
+  margin-left: 5px;
+  font-size: 1.7rem;
+  width: 20%;
+}
+
+.bnt-submit-form {
+  margin-top: 10px;
+  text-align: center;
+}
+.bnt-submit-form button {
+  background: #ffa200;
+  border: 0;
+  font-size: 1.7rem;
+  font-weight: 600;
+  opacity: 0.8;
+  padding: 0.8rem;
+  width: 50%;
+}
+.bnt-submit-form button:hover {
+  cursor: pointer;
+  opacity: 1;
+}
+
 @media (max-width: 600px) {
   .form-Container form {
     border: 0;
@@ -355,5 +456,42 @@ body {
 @media (max-width: 605px) {
   .product-card {
     width: 100%;
+  }
+}
+@media (max-width: 1200px) {
+  .product-table {
+    width: 960px;
+  }
+  .total-price {
+    display: block;
+    width: 950px;
+  }
+}
+@media (max-width: 960px) {
+  .product-table-container {
+    overflow-x: scroll;
+    display: block;
+  }
+  .remove-button {
+    opacity: 1;
+  }
+  .bnt-submit-form button {
+    opacity: 1;
+  }
+}
+@media (max-width: 650px) {
+  .product-table {
+    width: 800px;
+  }
+  .total-price {
+    width: 790px;
+  }
+}
+@media (max-width: 825px) {
+  .delivery-form-container {
+    width: 100vw;
+  }
+  .responsible-seller {
+    width: 200px;
   }
 }/*# sourceMappingURL=main.css.map */
