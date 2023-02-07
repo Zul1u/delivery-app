@@ -17,13 +17,13 @@ function List({ type, data, checkout, removeItem, testPrefix }) {
   const removeButton = (name, onClick, options) => (
     <button
       type="button"
-      className="remove-button"
+      className={ name }
       onClick={ onClick }
       data-testid={
         `${options.testPrefix}element-${options.type}-table-remove-${options.index}`
       }
     >
-      { name }
+      {name}
     </button>
   );
 
@@ -41,55 +41,57 @@ function List({ type, data, checkout, removeItem, testPrefix }) {
   };
 
   const userList = (
-    <table>
-      <thead>
-        <tr>
-          <th>Item</th>
-          <th>Nome</th>
-          <th>E-mail</th>
-          <th>Tipo</th>
-          <th>Excluir</th>
-        </tr>
-      </thead>
-      <tbody>
-        {
-          data.map((user, index) => (
-            <tr key={ user.id } id={ user.id }>
-              <td
-                data-testid={ `${testPrefix}element-user-table-item-number-${index}` }
-              >
-                {(index + 1).toString()}
-              </td>
-              <td
-                data-testid={ `${testPrefix}element-user-table-name-${index}` }
-              >
-                {user.name}
-              </td>
-              <td
-                data-testid={ `${testPrefix}element-user-table-email-${index}` }
-              >
-                {user.email}
-              </td>
-              <td
-                data-testid={ `${testPrefix}element-user-table-role-${index}` }
-              >
-                {translateRole(user.role)}
-              </td>
-              <td>
-                {removeButton('Excluir', removeItem, {
-                  testPrefix, type: 'user', index,
-                })}
-              </td>
-            </tr>
-          ))
-        }
-      </tbody>
-    </table>
+    <div className="table-container">
+      <table className="table">
+        <thead className="header-table">
+          <tr>
+            <th>Item</th>
+            <th>Nome</th>
+            <th>E-mail</th>
+            <th>Tipo</th>
+            <th>Excluir</th>
+          </tr>
+        </thead>
+        <tbody className="body-table">
+          {
+            data.map((user, index) => (
+              <tr key={ user.id } id={ user.id }>
+                <td
+                  data-testid={ `${testPrefix}element-user-table-item-number-${index}` }
+                >
+                  {(index + 1).toString()}
+                </td>
+                <td
+                  data-testid={ `${testPrefix}element-user-table-name-${index}` }
+                >
+                  {user.name}
+                </td>
+                <td
+                  data-testid={ `${testPrefix}element-user-table-email-${index}` }
+                >
+                  {user.email}
+                </td>
+                <td
+                  data-testid={ `${testPrefix}element-user-table-role-${index}` }
+                >
+                  {translateRole(user.role)}
+                </td>
+                <td>
+                  {removeButton('Excluir', removeItem, {
+                    testPrefix, type: 'user', index,
+                  })}
+                </td>
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+    </div>
   );
 
   const productList = (
-    <div className="product-table-container">
-      <table className="product-table">
+    <div className="table-container">
+      <table className="table">
         <thead className="header-table">
           <tr>
             <th>Item</th>

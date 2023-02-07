@@ -26,6 +26,10 @@
 .order-info-btn {
   padding: 0.7rem;
   text-align: center;
+
+  div {
+    padding: 0.5rem;
+  }
   
   button {
     background: $accent-color;

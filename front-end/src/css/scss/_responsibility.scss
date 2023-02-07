@@ -121,7 +121,7 @@
 
 // TABLE
 @media (max-width: 1200px) {
-  .product-table {
+  .table {
     width: 960px;
   }
 
@@ -132,12 +132,12 @@
 }
 
 @media (max-width: 960px) {
-  .product-table-container {
+  .table-container {
     overflow-x: scroll;
     display: block;
   }
 
-  .remove-button {
+  .Excluir, .X {
     opacity: 1;
   }
 
@@ -149,7 +149,7 @@
 }
 
 @media (max-width: 650px) {
-  .product-table {
+  .table {
     width: 800px;
   }
 

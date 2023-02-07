@@ -247,7 +247,7 @@ body {
   height: 5vh;
 }
 
-.product-table-container {
+.table-container {
   width: 100vw;
   display: flex;
   justify-content: center;
@@ -256,7 +256,7 @@ body {
   padding: 3rem 0;
 }
 
-.product-table {
+.table {
   border-collapse: collapse;
   width: 80%;
 }
@@ -287,7 +287,7 @@ body {
   width: 80%;
 }
 
-.remove-button {
+.Excluir, .X {
   background: #e85d04;
   border: 0;
   color: #f8f9fa;
@@ -295,11 +295,15 @@ body {
   font-weight: 600;
   padding: 0.5rem;
   opacity: 0.8;
-  width: 25px;
+  width: 80%;
 }
-.remove-button:hover {
+.Excluir:hover, .X:hover {
   cursor: pointer;
   opacity: 1;
+}
+
+.X {
+  width: 25px;
 }
 
 .delivery-form-container {
@@ -401,6 +405,9 @@ body {
 .order-info-btn {
   padding: 0.7rem;
   text-align: center;
+}
+.order-info-btn div {
+  padding: 0.5rem;
 }
 .order-info-btn button {
   background: #ffa200;
@@ -528,7 +535,7 @@ body {
   }
 }
 @media (max-width: 1200px) {
-  .product-table {
+  .table {
     width: 960px;
   }
   .total-price {
@@ -537,11 +544,11 @@ body {
   }
 }
 @media (max-width: 960px) {
-  .product-table-container {
+  .table-container {
     overflow-x: scroll;
     display: block;
   }
-  .remove-button {
+  .Excluir, .X {
     opacity: 1;
   }
   .bnt-submit-form button {
@@ -549,7 +556,7 @@ body {
   }
 }
 @media (max-width: 650px) {
-  .product-table {
+  .table {
     width: 800px;
   }
   .total-price {
