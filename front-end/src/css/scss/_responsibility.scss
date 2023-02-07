@@ -167,3 +167,14 @@
     width: 200px;
   }
 }
+
+// ORDER CARD
+@media (max-width: 825px) {
+  .order-card-container {
+    flex-direction: column;
+  }
+
+  .order-card {
+    width: 90%;
+  }
+}

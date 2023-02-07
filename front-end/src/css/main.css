@@ -348,6 +348,35 @@ body {
   opacity: 1;
 }
 
+.order-card-container {
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  display: flex;
+}
+
+.order-card {
+  align-items: center;
+  border-radius: 5px;
+  background-color: #ffc300;
+  display: flex;
+  justify-content: center;
+  margin: 5px auto;
+  height: 5rem;
+  width: 30%;
+}
+.order-card a {
+  text-align: center;
+  width: 100%;
+  padding: 1.6rem;
+}
+.order-card span {
+  font-size: 1.8rem;
+  font-weight: 600;
+  display: inline-block;
+  padding: 0 1rem;
+}
+
 @media (max-width: 600px) {
   .form-Container form {
     border: 0;
@@ -493,5 +522,13 @@ body {
   }
   .responsible-seller {
     width: 200px;
+  }
+}
+@media (max-width: 825px) {
+  .order-card-container {
+    flex-direction: column;
+  }
+  .order-card {
+    width: 90%;
   }
 }/*# sourceMappingURL=main.css.map */

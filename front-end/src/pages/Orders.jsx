@@ -13,21 +13,23 @@ export default function Orders() {
   return (
     <>
       <Header />
-      {
-        !isLoading && orders.map((order) => (
-          <OrderCard
-            key={ order.id }
-            role={ getRole }
-            id={ order.id }
-            totalPrice={ +order.totalPrice }
-            saleDate={ formatDate(order.saleDate) }
-            status={ order.status }
-            deliveryAdress={ order.deliveryAddress }
-            deliveryNumber={ order.deliveryNumber }
-            isSeller={ seller }
-          />
-        ))
-      }
+      <div className="order-card-container">
+        {
+          !isLoading && orders.map((order) => (
+            <OrderCard
+              key={ order.id }
+              role={ getRole }
+              id={ order.id }
+              totalPrice={ +order.totalPrice }
+              saleDate={ formatDate(order.saleDate) }
+              status={ order.status }
+              deliveryAdress={ order.deliveryAddress }
+              deliveryNumber={ order.deliveryNumber }
+              isSeller={ seller }
+            />
+          ))
+        }
+      </div>
     </>
   );
 }

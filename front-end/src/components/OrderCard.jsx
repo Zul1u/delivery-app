@@ -8,7 +8,7 @@ function OrderCard({
   deliveryAdress, deliveryNumber, isSeller, role,
 }) {
   return (
-    <div>
+    <div className="order-card">
       <Link to={ `/${role}/orders/${id}` }>
         <span data-testid={ `${role}_orders__element-order-id-${id}` }>
           {`Pedido${id}`}
