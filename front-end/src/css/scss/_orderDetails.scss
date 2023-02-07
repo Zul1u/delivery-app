@@ -1,0 +1,45 @@
+.order-info-container {
+  margin: auto;
+  width: 80%;
+
+  h3 {
+    padding: 0 0.5rem;
+  }
+
+  p {
+    padding: 0 0.5rem;
+  }
+}
+
+.order-info {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+
+.order-info-body {
+  p {
+    padding: 0 1rem
+  }
+}
+
+.order-info-btn {
+  padding: 0.7rem;
+  text-align: center;
+  
+  button {
+    background: $accent-color;
+    border: 0;
+    border-radius: 5px;
+    font-size: 1.4rem;
+    font-weight: 600;
+    padding: 0.5rem;
+
+    &:hover {
+      background:  darken($accent-color, 5);
+      color: $text-color-02;
+      cursor: pointer;
+      padding: 0.6rem;
+    }
+  }
+}

@@ -377,6 +377,46 @@ body {
   padding: 0 1rem;
 }
 
+.order-info-container {
+  margin: auto;
+  width: 80%;
+}
+.order-info-container h3 {
+  padding: 0 0.5rem;
+}
+.order-info-container p {
+  padding: 0 0.5rem;
+}
+
+.order-info {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+
+.order-info-body p {
+  padding: 0 1rem;
+}
+
+.order-info-btn {
+  padding: 0.7rem;
+  text-align: center;
+}
+.order-info-btn button {
+  background: #ffa200;
+  border: 0;
+  border-radius: 5px;
+  font-size: 1.4rem;
+  font-weight: 600;
+  padding: 0.5rem;
+}
+.order-info-btn button:hover {
+  background: #e69200;
+  color: #f8f9fa;
+  cursor: pointer;
+  padding: 0.6rem;
+}
+
 @media (max-width: 600px) {
   .form-Container form {
     border: 0;
@@ -513,6 +553,7 @@ body {
     width: 800px;
   }
   .total-price {
+    text-align: start;
     width: 790px;
   }
 }
