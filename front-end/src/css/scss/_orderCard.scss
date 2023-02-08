@@ -28,3 +28,22 @@
     padding: 0 1rem;
   }
 }
+
+#Pendente {
+  background-color: $order-card-color-03;
+}
+
+#Preparando {
+  background-color: $order-card-color-02;
+}
+
+#Transito {
+  background-color: $order-card-color-01;
+}
+
+#Entregue {
+  background-color: $order-card-color-04;
+  span {
+    color: $text-color-02;
+  }
+}

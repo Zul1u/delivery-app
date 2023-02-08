@@ -8,7 +8,7 @@ function OrderCard({
   deliveryAdress, deliveryNumber, isSeller, role,
 }) {
   return (
-    <div className="order-card">
+    <div className="order-card" id={ status === 'Em Trânsito' ? 'Transito' : status }>
       <Link to={ `/${role}/orders/${id}` }>
         <span data-testid={ `${role}_orders__element-order-id-${id}` }>
           {`Pedido${id}`}
@@ -23,7 +23,7 @@ function OrderCard({
         </span>
 
         <span data-testid={ `${role}_orders__element-card-price-${id}` }>
-          { replaceDot(totalPrice.toFixed(2))}
+          {replaceDot(totalPrice.toFixed(2))}
         </span>
 
         {

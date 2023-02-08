@@ -381,6 +381,25 @@ body {
   padding: 0 1rem;
 }
 
+#Pendente {
+  background-color: #f48c06;
+}
+
+#Preparando {
+  background-color: #e85d04;
+}
+
+#Transito {
+  background-color: #dc2f02;
+}
+
+#Entregue {
+  background-color: #10451d;
+}
+#Entregue span {
+  color: #f8f9fa;
+}
+
 .order-info-container {
   margin: auto;
   width: 80%;
