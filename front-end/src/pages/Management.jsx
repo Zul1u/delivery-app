@@ -66,77 +66,86 @@ function Management() {
   };
 
   return (
-    <div>
+    <>
       <Header />
       {registerError.error && (
         <span data-testid="admin_manage__element-invalid-register">
           {registerError.message}
         </span>
       )}
-      <form onSubmit={ handleSubmit }>
-        <label htmlFor="name">
-          Nome:
-          <input
-            data-testid="admin_manage__input-name"
-            type="name"
-            id="name"
-            name="name"
-            onChange={ handleChange }
-            value={ formState.name }
-            placeholder="Nome e sobrenome"
-          />
-        </label>
-        <label htmlFor="email">
-          Email:
-          <input
-            data-testid="admin_manage__input-email"
-            type="email"
-            id="email"
-            name="email"
-            onChange={ handleChange }
-            value={ formState.email }
-            placeholder="seu-email@site.com.br"
-          />
-        </label>
-        <label htmlFor="password">
-          Senha:
-          <input
-            data-testid="admin_manage__input-password"
-            type={ passwordInput.type }
-            id="password"
-            name="password"
-            onChange={ handleChange }
-            value={ formState.password }
-            placeholder="******"
-          />
-        </label>
-        <button
-          type="button"
-          onClick={ seePassword }
-        >
-          { passwordInput.button }
-        </button>
-        <label htmlFor="role">
-          Tipo:
-          <select
-            data-testid="admin_manage__select-role"
-            id="role"
-            name="role"
-            onChange={ handleChange }
-            value={ formState.role }
+      <form
+        onSubmit={ handleSubmit }
+        className="management-form-container"
+      >
+        <div className="management-div-input">
+          <label htmlFor="name">
+            Nome:
+            <input
+              data-testid="admin_manage__input-name"
+              type="name"
+              id="name"
+              name="name"
+              onChange={ handleChange }
+              value={ formState.name }
+              placeholder="Nome e sobrenome"
+            />
+          </label>
+          <label htmlFor="email">
+            Email:
+            <input
+              data-testid="admin_manage__input-email"
+              type="email"
+              id="email"
+              name="email"
+              onChange={ handleChange }
+              value={ formState.email }
+              placeholder="seu-email@site.com.br"
+            />
+          </label>
+        </div>
+        <div className="management-div-input">
+          <label htmlFor="password">
+            Senha:
+            <input
+              data-testid="admin_manage__input-password"
+              type={ passwordInput.type }
+              id="password"
+              name="password"
+              onChange={ handleChange }
+              value={ formState.password }
+              placeholder="******"
+            />
+            <button
+              type="button"
+              onClick={ seePassword }
+            >
+              {passwordInput.button}
+            </button>
+          </label>
+          <label htmlFor="role">
+            Tipo:
+            <select
+              data-testid="admin_manage__select-role"
+              id="role"
+              name="role"
+              onChange={ handleChange }
+              value={ formState.role }
+            >
+              {roles.map((role) => (
+                <option key={ role } value={ role }>{role}</option>
+              ))}
+            </select>
+          </label>
+        </div>
+        <div className="management-btn-input">
+          <button
+            type="submit"
+            data-testid="admin_manage__button-register"
+            disabled={ submitDisabled }
           >
-            {roles.map((role) => (
-              <option key={ role } value={ role }>{role}</option>
-            ))}
-          </select>
-        </label>
-        <button
-          type="submit"
-          data-testid="admin_manage__button-register"
-          disabled={ submitDisabled }
-        >
-          CADASTRAR
-        </button>
+            CADASTRAR
+          </button>
+        </div>
       </form>
       <List
         type="user"
@@ -144,7 +153,7 @@ function Management() {
         removeItem={ removeUser }
         testPrefix="admin_manage__"
       />
-    </div>
+    </>
   );
 }
 

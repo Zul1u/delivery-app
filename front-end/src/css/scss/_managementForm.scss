@@ -1,0 +1,68 @@
+.management-form-container {
+  margin: auto;
+  width: 80%;
+}
+
+.management-div-input {
+  padding: 0.5rem;
+
+  label {
+    display: inline-block;
+    font-size: 1.7rem;
+    padding: 0.5rem;
+    width: 300px;
+
+    button {
+      padding: 0.3rem 0.5rem;
+      background: darken($text-color-02, 10);
+      border: 0;
+      border-bottom: 1px solid;
+      border-radius: 5px;
+      border-bottom-left-radius: 0;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+
+  input, select {
+    border: 0;
+    border-bottom: 1px solid;
+    border-radius: 5px;
+    font-size: 1.6rem;
+    margin-left: 5px;
+    padding: 0.25rem;
+
+    &:focus-visible {
+      outline: none;
+      border-bottom: 2px solid;
+    }
+  }
+
+  #password {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+}
+
+.management-btn-input {
+  padding: 0.5rem;
+
+  button {
+    background: $accent-color;
+    border: 0;
+    border-radius: 5px;
+    font-size: 1.4rem;
+    font-weight: 600;
+    padding: 0.5rem;
+    width: 200px;
+
+    &:hover {
+      background:  darken($accent-color, 5);
+      color: $text-color-02;
+      cursor: pointer;
+      padding: 0.6rem;
+    }
+  }
+}

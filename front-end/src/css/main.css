@@ -424,6 +424,67 @@ body {
   padding: 0.6rem;
 }
 
+.management-form-container {
+  margin: auto;
+  width: 80%;
+}
+
+.management-div-input {
+  padding: 0.5rem;
+}
+.management-div-input label {
+  display: inline-block;
+  font-size: 1.7rem;
+  padding: 0.5rem;
+  width: 300px;
+}
+.management-div-input label button {
+  padding: 0.3rem 0.5rem;
+  background: #dae0e5;
+  border: 0;
+  border-bottom: 1px solid;
+  border-radius: 5px;
+  border-bottom-left-radius: 0;
+}
+.management-div-input label button:hover {
+  cursor: pointer;
+}
+.management-div-input input, .management-div-input select {
+  border: 0;
+  border-bottom: 1px solid;
+  border-radius: 5px;
+  font-size: 1.6rem;
+  margin-left: 5px;
+  padding: 0.25rem;
+}
+.management-div-input input:focus-visible, .management-div-input select:focus-visible {
+  outline: none;
+  border-bottom: 2px solid;
+}
+.management-div-input #password {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.management-btn-input {
+  padding: 0.5rem;
+}
+.management-btn-input button {
+  background: #ffa200;
+  border: 0;
+  border-radius: 5px;
+  font-size: 1.4rem;
+  font-weight: 600;
+  padding: 0.5rem;
+  width: 200px;
+}
+.management-btn-input button:hover {
+  background: #e69200;
+  color: #f8f9fa;
+  cursor: pointer;
+  padding: 0.6rem;
+}
+
 @media (max-width: 600px) {
   .form-Container form {
     border: 0;
@@ -577,6 +638,11 @@ body {
     flex-direction: column;
   }
   .order-card {
+    width: 90%;
+  }
+}
+@media (max-width: 790px) {
+  .management-form-container {
     width: 90%;
   }
 }/*# sourceMappingURL=main.css.map */
