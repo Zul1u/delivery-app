@@ -6,6 +6,7 @@
 * [Principais Tecnologias Usadas](#principais-tecnologias-usadas)
 * [Rodando o Projeto Localmente](#rodando-o-projeto-localmente)
 * [Login](#login)
+* [Menbros do grupo](#menbros-do-grupo)
 * [Observações](#observações)
 
 ## Contexto
@@ -30,6 +31,8 @@ O back-end foi feito antes do front e de forma síncrona e em pair programming. 
 ## Rodando o Projeto Localmente
 
 Aqui você vai encontrar instruções para rodar uma cópia do projeto na sua máquina.
+
+⚠️ Para rodar esse projeto de qualquer um dos modos, primeiro você tem que remover o “.exemple” do arquivo “.env.exemple”. Localizado na raiz do diretório back-end.
 
 ### Sem o Docker
 Para conseguir rodar esse projeto sem o docker você precisa ter o MySQL instalado localmente na sua máquina.
@@ -96,6 +99,15 @@ email: adm@deliveryapp.com
 senha: --adm2@21!!--
 ```
 
+## Menbros do grupo
+* [Eu/Arthur Martins](https://www.linkedin.com/in/arthur-martins-leal-peixoto/)
+* [Gabriel Caminha](https://www.linkedin.com/in/caminha-gabriel/)
+* [Daniel Erhardt Cardoso](https://www.linkedin.com/in/daniel-erhcardoso/)
+* [Caio de Sousa (Sony)](https://www.linkedin.com/in/sshcaio/)
+* [Samuel Gonçalves](https://www.linkedin.com/in/samuel5g/)
+
 ## Observações
 
 Os scripts e alguns dos arquivos de configuração do projeto foram feitos pela Trybe.
+
+Toda a estilização do projeto foi feita por mim. 
