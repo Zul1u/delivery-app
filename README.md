@@ -34,7 +34,7 @@ Aqui você vai encontrar instruções para rodar uma cópia do projeto na sua m�
 
 ⚠️ Para rodar esse projeto de qualquer um dos modos, primeiro você tem que remover o “.exemple” do arquivo “.env.exemple”. Localizado na raiz do diretório back-end.
 
-### Sem o Docker
+#### Sem o Docker
 Para conseguir rodar esse projeto sem o docker você precisa ter o MySQL instalado localmente na sua máquina.
 
 Na pasta raiz do projeto você deve usar esse script no terminal:
@@ -54,7 +54,7 @@ Use este script na pasta raiz caso o banco de dados ainda não tenha sido povoad
 npm run db:reset
 ```
 
-### Com o Docker
+#### Com o Docker
 Na pasta raiz do projeto você deve usar estes comandos no terminal:
 ```
 npm run dev:prestart
@@ -78,7 +78,7 @@ Use este script na pasta raiz caso o banco de dados ainda não tenha sido povoad
 npm run db:reset
 ```
 
-## Login
+### Login
 Você pode fazer login como vendedor, consumidor, administrador (somente o adm pode criar uma conta de vendedor) ou criar sua própria conta como consumidor.
 
 consumidor
